@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" content="noinbex">
+    <title>TRPG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+   <div id="status-screen" class="status-screen" style="display: block;">
+    <img class="logo" src="img\logo2.jpg">
+    <h1>初期設定</h1>
+      <label for="playerName">プレイヤー名:</label>
+      <input type="text" id="playerName" maxlength="10" placeholder="入力欄（最大10文字）">
+      <div class="stasetting">
+        <h2>ステータス設定</h2>
+        <p id="stapoint"><button id="sta">一括でダイスを振る</button><span class="lim"><span id="Total">00</span>/15</span></p>
+          <div class="syokista">
+            <p>体力　：<span id="HP"></span><button id="hp_set" class="staset">🎲</button></p>
+            <p>判断力：<span id="HANDAN"></span><button id="handan_set" class="staset">🎲</button></p>
+            <p>幸運値：<span id="LUCK"> </span><button id="luck_set" class="staset">🎲</button></p>
+            <p>素早さ：<span id="SPEAD"> </span><button id="spead_set" class="staset">🎲</button></p>
+            <!-- <p>知識：<span id="TISIKI"> </span><button id="tisiki_set" class="staset">🎲</button></p> -->
+
+            <!-- <p>所持品：<span id="item"></span></p> -->
+          </div>
+      </div>
+    <button id="start" class="start">ゲームを開始する</button>
+   </div>
+
+  <div id = "sta-screen" style="display: none;">
+     <img class="logo" src="img\logo2.jpg">
+
+    <button id="StatusBuck" class="StatusBuck">ゲームに戻る</button>
+    <h1>ステータス</h1>
+          <p>Name:<span id="playerName_game"></span></p>
+
+          <p>体力:<span id="HP_game"></span></p>
+          <p>判断力:<span id="HANDAN_game"></span></p>
+          <p>幸運値：<span id="LUCK_game"></span></p>
+          <p>素早さ：<span id="SPEAD_game"></span></p>
+          <!-- <p>持ち物<ul id="items"></ul></p> -->
+  </div>
+
+  <div id="cmd-screen" style="display: none;" class="cmd-screen">
+    <img class="logo" src="img\logo2.jpg">
+    <div class="cmdtx">コマンドを<ruby>選択<rt>せんたく</rt></ruby>してください</div>
+    <div id="cmd">
+      <button id="cmd1" class="cmd1"><span id=cmdtext1></span></button>
+      <button id="cmd2" class="cmd2"><span id=cmdtext2></span></button>
+      <button id="cmd3" class="cmd3"><span id=cmdtext3></span></button>
+    </div>
+  </div>
+
+    <!-- <div id="cmd-screen" style="display: none;" class="2cmd-screen">
+    <div class="2cmdtx">コマンドを選択してください</div>
+    <div id="2cmd">
+      <button id="2cmd1" class="2cmd1"><span id=2cmdtext1></span></button>
+      <button id="2cmd2" class="2cmd2"><span id=2cmdtext2></span></button>
+    </div>
+  </div> -->
+
+  <div id="count" class="count" style="display: none; background-color: black; color: white; width: 100vw; height: 100vh;">
+    
+    <button class="next" id="nextco">次へ</button>
+
+    <div class="countpa"></div><div class="counttx"><ruby>津波到達<rt>つなみとうたつ</rt></ruby>まで<ruby>残<rt>のこ</rt></ruby>り<span id="time"></span>分<br><ruby>場所<rt>ばしょ</rt></ruby>：<span id="place"></span></div></div>
+  </div>
+
+
+  <div id="game-screen" class="gamesc" style="display: none;">
+    <img class="logo" src="img\logo2.jpg">
+    <button id="Status" class="Status">ステータス確認</button>
+    <button class="next" id="next">次へ</button>
+    <div class="sptxbox">
+      <div id = "spebox">
+        <div id="speakerbox">
+          <p id="speaker">xxxx</p>
+        </div>
+      </div>
+      <div id = "messbox">
+        <div id="textbox">
+          <p id="text">xxxx</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+    <div id="dice-screen" style="display: none;">
+    <img class="logo" src="img\logo2.jpg">
+      <div class="dicetx">ダイスを<ruby>振<rt>ふ</rt></ruby>ってください。</div>
+      <button id="dicescreen" class="dicescreen">ダイスを振る</button>
+    </div>
+
+    <div id="gameover" class="gameover" style="display: none;">
+    <img class="logo" src="img\logo2.jpg">
+      <div class="gameovertx">BAD END...</div>
+<div id="ec3" class="ec3">
+      <a href="https://docs.google.com/presentation/d/1qwAchm12Bnkz1ouAh-PxaJwLs6qKSlwM/edit?usp=drive_link&ouid=103859938448823707397&rtpof=true&sd=true">ec3 紹介ページへ！</a>
+      
+    </div>
+    </div>
+
+    <div id="Trueend" class="gameover" style="display: none;">
+    <img class="logo" src="img\logo2.jpg">
+      <div class="gameovertx">BITTER END...</div>
+<div id="ec3" class="ec3" >
+      <a href="https://docs.google.com/presentation/d/1qwAchm12Bnkz1ouAh-PxaJwLs6qKSlwM/edit?usp=drive_link&ouid=103859938448823707397&rtpof=true&sd=true">ec3 活動紹介ページへ！</a>
+    </div>    </div>
+    
+    <div id="Happyend" class="gameover" style="display: none;">
+    <img class="logo" src="img\logo2.jpg">
+      <div class="gameovertx">HAPPY END</div>
+<div id="ec3" class="ec3" >
+      <a href="https://docs.google.com/presentation/d/1qwAchm12Bnkz1ouAh-PxaJwLs6qKSlwM/edit?usp=drive_link&ouid=103859938448823707397&rtpof=true&sd=true">ec3 活動紹介ページへ！</a>
+    </div>
+    </div>
+
+    <!-- <div id="ec3" class="ec3" style="display: none;">
+    <img class="logo" src="img\logo2.jpg">
+      <a href="https://docs.google.com/presentation/d/11_IeN7zsT4KQb4HnHzPjJ3bFB2U1_uvjceGhjJFrfpU/edit?usp=sharing">ec3 活動紹介ページへ！</a>
+    </div> -->
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
