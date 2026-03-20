@@ -67,6 +67,7 @@ const luck_set = document.getElementById('luck_set');
 
 const start = document.getElementById('start');
 const next = document.getElementById("next");
+const reset = document.getElementById("reset");
 const nextco = document.getElementById("nextco");
 const dicescreen = document.getElementById("dicescreen");
 const cmd1 = document.getElementById("cmd1");
@@ -81,6 +82,7 @@ const StatusBuck = document.getElementById("StatusBuck");
 const Happyend = document.getElementById("Happyend");
 const gameover = document.getElementById("gameover");
 const Trend = document.getElementById("Trueend");
+const end = document.getElementById("end");
 
 const LUCK_game=document.getElementById("LUCK_game");
 const SPEAD_game=document.getElementById("SPEAD_game");
@@ -307,7 +309,7 @@ const story4_1_m =[
 ];
 
 const story4_2 =[
-    {speaker: "ナレーター", text: "{playerName}は<ruby>救助<rt>きゅうじょ</rt></ruby>に<ruby>行<rtい</rt></ruby>くことにした。" }
+    {speaker: "ナレーター", text: "{playerName}は<ruby>救助<rt>きゅうじょ</rt></ruby>に<ruby>行<rt>い</rt></ruby>くことにした。" }
 ];
 
 const story4_2_s =[
@@ -347,7 +349,7 @@ const story5_1_m =[
 ];
 
 const story5_2 =[
-    {speaker: "ナレーター", text: "{playerName}は<ruby>他<rt>ほか</rt></ruby>の<ruby>避難者<rt>ひなんしゃ</rt></ruby>を<ruby>支<rt>ささ</rt></ruby>えながら<ruby>進<rtすすす</rt></ruby>んだ。" }
+    {speaker: "ナレーター", text: "{playerName}は<ruby>他<rt>ほか</rt></ruby>の<ruby>避難者<rt>ひなんしゃ</rt></ruby>を<ruby>支<rt>ささ</rt></ruby>えながら<ruby>進<rt>すす</rt></ruby>んだ。" }
 ];
 
 const story5_2_s =[
@@ -371,7 +373,7 @@ const story5_3_m =[
 const story6 = [
     { speaker:"ナレーター",text:"<ruby>校門<rt>こうもん</rt></ruby>の<ruby>向<rt>む</rt></ruby>こうに<ruby>避難所<rt>ひなんじょ</rt></ruby>の<ruby>明<rt>あ</rt></ruby>かりが<ruby>見<rt>み</rt></ruby>える。"},
     { speaker: "ナレーター", text: "だが<ruby>背後<rt>はいご</rt></ruby>で「ドォォン……」という<ruby>轟音<rt>ごうおん</rt></ruby>。"},
-    { speaker: "ナレーター", text: "もう、津波が迫っている。"}
+    { speaker: "ナレーター", text: "もう、<ruby>津波<rt>つなみ</rt></ruby>が迫っている。"}
 ];
 
 const story7_1 =[
@@ -565,16 +567,19 @@ function countbuck(cap){
 
 function badend(){
     document.getElementById("game-screen").style.display = "none";
-    document.getElementById("gameover").style.display="block";
+    document.getElementById("gameover").style.display = "block";
+    end.style.display = "block";
 }
 
 function trueend(){
     document.getElementById("game-screen").style.display = "none";
-    document.getElementById("Trueend").style.display="block";
+    document.getElementById("Trueend").style.display = "block";
+    end.style.display = "block";
 }
 function happyend(){
     document.getElementById("game-screen").style.display = "none";
-    document.getElementById("Happyend").style.display="block";
+    document.getElementById("Happyend").style.display = "block";
+    end.style.display = "block";
 }
 
 let pendingcmd =null;
@@ -696,6 +701,40 @@ StatusBuck.addEventListener("click" , () => {
 });
 
 
+function　Reset() {
+    // 変数リセット
+    hpnum = 0;
+    speadnum = 0;
+    lucknum = 0;
+    handannum = 0;
+    Time = 10;
+    person = 0;
 
+    chapter = story1;
+    storyIndex = 0;
 
+    // 表示リセット
+    document.getElementById("HP").textContent = "";
+    document.getElementById("SPEAD").textContent = "";
+    document.getElementById("LUCK").textContent = "";
+    document.getElementById("HANDAN").textContent = "";
+    document.getElementById("Total").textContent = "00";
+
+    // 名前リセット
+    document.getElementById("playerName").value = "";
+
+    // 画面切り替え
+    document.getElementById("status-screen").style.display = "block";
+    document.getElementById("game-screen").style.display = "none";
+    document.getElementById("cmd-screen").style.display = "none";
+    document.getElementById("dice-screen").style.display = "none";
+    document.getElementById("gameover").style.display = "none";
+    document.getElementById("Happyend").style.display = "none";
+    document.getElementById("Trueend").style.display = "none";
+    document.getElementById("end").style.display = "none";
+}
+
+reset.addEventListener("click", () => {
+    Reset();
+});
 

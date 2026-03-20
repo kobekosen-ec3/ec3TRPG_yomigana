@@ -157,16 +157,28 @@ body {
     font-size: 30px;
     padding-left: 40vw;
 }
+.reset{
+    padding-left:80vw;
+}
+
+#end a{
+    font-size:30px;
+    padding-left:40vw;
+}
 .cmd1,.cmd2,.cmd3{
     width: 200px;
     height: 80px;
 }
 
-.gameovertx{
+#reset {
+    width: 150px;
+    height: 60px;
+}
+
+.gameovertx {
     margin-top: 200px;
     font-size: 90px;
     padding-left: 30vw;
-    
 }
 #sptxbox{
     padding-bottom: 30px;
@@ -187,12 +199,19 @@ body {
         width: 150px;
         height: 30px;
     }
+    #reset{
+        width:150px;
+        height:30px;
+    }
 }
 
 @media screen and (max-width:780px) {
-    .next, .Status{
+    .next, .Status, #reset{
         width: 130px;
        
+    }
+    .reset{
+        padding-left:20%;
     }
     .status-screen{
     /* 初期設定画面全体 */
@@ -223,10 +242,14 @@ body {
         width: 90px;
         margin-left: 5%;
     }
-    .gameover a {
+ 
+    #end a {
         padding-left: 10%;
         font-size: 20px;
     }
+/*    #reset{
+
+    }*/
     .gameovertx{
         font-size: 30px;
     }
