@@ -10,7 +10,9 @@ body {
 /* .Status,.next{
     width: 200px;
 } */
-
+.hide-ruby rt {
+  display: none;
+}
 
 
 .syokista span{
