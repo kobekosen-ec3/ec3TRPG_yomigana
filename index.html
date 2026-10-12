@@ -13,6 +13,12 @@
     <h1>初期設定</h1>
       <label for="playerName">プレイヤー名:</label>
       <input type="text" id="playerName" maxlength="10" placeholder="入力欄（最大10文字）">
+
+      <label class="ruby-toggle">
+        <input type="checkbox" id="ruby-toggle" checked>
+        ふりがなを表示
+      </label>
+
       <div class="stasetting">
         <h2>ステータス設定</h2>
         <p id="stapoint"><button id="sta">一括でダイスを振る</button><span class="lim"><span id="Total">00</span>/15</span></p>
@@ -33,9 +39,9 @@
      <img class="logo" src="img\logo2.jpg">
 
     <button id="StatusBuck" class="StatusBuck">ゲームに戻る</button>
+    
     <h1>ステータス</h1>
           <p>Name:<span id="playerName_game"></span></p>
-
           <p>体力:<span id="HP_game"></span></p>
           <p>判断力:<span id="HANDAN_game"></span></p>
           <p>幸運値：<span id="LUCK_game"></span></p>
@@ -52,14 +58,6 @@
       <button id="cmd3" class="cmd3"><span id=cmdtext3></span></button>
     </div>
   </div>
-
-    <!-- <div id="cmd-screen" style="display: none;" class="2cmd-screen">
-    <div class="2cmdtx">コマンドを選択してください</div>
-    <div id="2cmd">
-      <button id="2cmd1" class="2cmd1"><span id=2cmdtext1></span></button>
-      <button id="2cmd2" class="2cmd2"><span id=2cmdtext2></span></button>
-    </div>
-  </div> -->
 
   <div id="count" class="count" style="display: none; background-color: black; color: white; width: 100vw; height: 100vh;">
     
@@ -120,8 +118,11 @@
         </div>
     </div>
         <!--<a href="index.html">-->
-     
 
-    <script src="script.js"></script>
+  <script src="define.js"></script>
+  <script src="story-data.js"></script>
+  <script src="status.js"></script>
+  <script src="setting.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
