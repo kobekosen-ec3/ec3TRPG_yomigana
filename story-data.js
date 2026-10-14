@@ -86,7 +86,7 @@ const story2_3_m =[
 ];
 
 const story3 = [
-    { speaker: "ナレーター", text: "<ruby>道路<rt>どうろ</rt></ruby>が<ruby>陥没<rt>かんぼつ</rt></ruby>している。車の列が動かない。" },
+    { speaker: "ナレーター", text: "<ruby>道路<rt>どうろ</rt></ruby>が<ruby>陥没<rt>かんぼつ</rt></ruby>している。<ruby>車<rt>くるま</rt></ruby>の<ruby>列<rt>れつ</rt></ruby>が<ruby>動<rt>うご</rt></ruby>かない。" },
     { speaker: "ナレーター", text: "<ruby>人々<rt>ひとびと</rt></ruby>が<ruby>徒歩<rt>とほ</rt></ruby>で<ruby>先<rt>さき</rt></ruby>に<ruby>進<rt>すす</rt></ruby>もうとしている。" }
 ];
 
