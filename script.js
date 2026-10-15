@@ -1,6 +1,12 @@
 function displayStory(story) {
-  let currentText = story.text.replace("{playerName}", playerName);
+  let currentText = story.text
+    .replace("{playerName}", playerName)
+    .replace("{hours}", hours)
+    .replace("{minutes}", minutes);
   let currentName = story.speaker.replace("{playerName}", playerName);
+//   let currentText = story.text
+//     .replaceAll("{playerName}", playerName)
+//     .replaceAll("{currentTime}", gameStartTime);
 
   if (!rubyEnabled) {
     currentText = removeRuby(currentText);
@@ -38,6 +44,19 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
+
+function getDate(){
+    const now = new Date(); // 現在時刻を取得
+    year = now.getFullYear(); // 年
+    month = now.getMonth() + 1; // 月 (0から始まるため+1)
+    date = now.getDate(); // 日
+    hours = now.getHours(); // 時
+    minutes = now.getMinutes(); // 分
+    // const seconds = now.getSeconds(); // 秒
+
+    console.log(`${year}/${month}/${date} ${hours}:${minutes}`);
+    // 出力例: 2023/10/5 14:30:45
+}
 start.addEventListener("click", () => {
     // 入力値取得
     playerName = document.getElementById("playerName").value.trim();
@@ -77,6 +96,7 @@ start.addEventListener("click", () => {
 
     document.getElementById("text").innerHTML =
     rubyEnabled ? startText : removeRuby(startText);
+    getDate();
 });
 
 
