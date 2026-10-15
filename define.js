@@ -55,3 +55,9 @@ function dice(status) {
 function diceRoll() {
     return Math.floor(Math.random() * 6 + 1); // 1～6を返す
 }
+
+let year = null;
+let month = null;
+let date = null;
+let hours = null;
+let minutes = null;
