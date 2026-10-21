@@ -1,269 +1,536 @@
-body {
-    background-color: rgba(249, 243, 216, 0.888);
-}
-.status-screen{
-    /* 初期設定画面全体 */
-    padding-left: 20vw;
-    padding-top: 30px;
-}
+@charset "UTF-8";
 
-/* .Status,.next{
-    width: 200px;
-} */
-.hide-ruby rt {
-  display: none;
-}
-
-
-.syokista span{
-    padding-left: 20px;
-}
-
-.count{
-    position:absolute;
-    left: 0px;
-    top: 0px;
-
-}
-
-.countpa{
-    margin-top: 20%;
-}
-
-.counttx{
-    padding-left: 40%;
-    font-size: 30px;
-}
-
-.red{
-    color: red;
-}
-.black{
-    color: #000;
-}
-
-.staset {
-  position: absolute;
-  left: 430px;
-  /* padding-left: 10px; */
-}
-.lim{
-    margin-left: 50px;
-}
-
-.start{
-    position: absolute;
-    left: 60vw;
-    margin-top: -120px;
-    width: 300px;
-    height: 100px;
-    
-}
-
-
-/* ナレーター表示ボックス */
-#spebox {
-    background-color: #fff;
-    /* position: absolute; */
-    opacity: 0.9;
-    width: 220px;     /* 幅調整 */
-    height: 40px;     /* 高さ調整 */
-    padding-bottom: 10px;
-    margin-top: 250px;
-    /* margin-bottom: 50px; */
-
-    margin-left: 25%;
-    transform: translateX(-50%);
-    border: solid 3px #15515a;
-    z-index: 3;
-    display: flex;
-    align-items: center; /* 縦中央揃え */
-    justify-content: center; /* 横中央揃え */
-}
-
-/* ナレーター文字 */
-#speaker {
-    color: #000;
-    font-size: 1.0rem;
-    font-family: serif;
-    margin: 0; /* 余白をなくす */
-}
-
-/* メッセージボックス */
-#messbox {
-    /* position: absolute; */
-    opacity: 0.9;
-    width: 90%;
-    max-width: 800px;
-    height: 160px;
-    /* top: 430px; */
-    margin-top: 5px;
-    /* left: 50%; */
-    margin-left: 50%;
-    transform: translateX(-50%);
-    background-color: #fff;
-    border: double 10px #15515a;
-    z-index: 2; /* spebox より背面に */
-}
-.logo{
-    width: 120px;
-    position: absolute;
-    right: 160px;
-    top: 30px;
-}
-
-/* メッセージ内のテキスト */
-#textbox {
-    width: 100%;
-    height: 100%;
-    padding: 10px;
+/* ==================================================
+   1. 基本設定（PC画面フィット・スクロール防止）
+   ================================================== */
+* {
     box-sizing: border-box;
 }
 
-#text {
-    color: #000;
-    font-size: 1.5rem;
-    font-family: serif;
+html, body {
+    width: 100vw;
+    height: 100vh;
     margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f7f3e8;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    color: #1a202c;
+}
+
+/* ルビ（ふりがな）削除切り替え */
+.hide-ruby rt {
+    display: none;
+}
+
+/* ロゴ画像 */
+.logo {
+    width: 110px;
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    z-index: 10;
+}
+
+/* ==================================================
+   2. 初期設定画面（ステータス作成）
+   ================================================== */
+.status-screen {
+    width: 90%;
+    max-width: 650px;
+    margin: 0;
+    padding: 25px 35px 30px;
+    background-color: #ffffff;
+    border: 2px solid #2b4c59;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.back-to-top {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #2b6cb0;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    font-family: sans-serif;
+    padding: 6px 12px;
+    background-color: #f0f4f8;
+    border-radius: 6px;
+    border: 1px solid #cbd5e0;
+    transition: all 0.2s ease;
+}
+
+.back-to-top:hover {
+    background-color: #2b6cb0;
+    color: #ffffff;
+}
+
+.status-screen h1 {
+    font-size: 1.5rem;
+    margin: 5px 0 15px;
+}
+
+.status-screen h2 {
+    font-size: 1.1rem;
+    margin: 10px 0 5px;
+}
+
+#playerName {
+    margin-left: 12px;
+    padding: 6px 10px;
+    font-size: 0.95rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+}
+
+.ruby-toggle {
+    margin: 12px 0;
+    font-size: 0.95rem;
+}
+
+.syokista {
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+/* ダイスボタンと数値を縦揃え（CSS Gridレイアウト） */
+.syokista p {
+    display: grid;
+    grid-template-columns: 100px 40px 60px;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.syokista span {
+    font-weight: bold;
+    color: #1a365d;
+    text-align: center;
+    min-height: 1.2em;
+    padding-left: 0;
+}
+
+.staset {
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 4px 8px;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    background-color: #f7fafc;
+    width: 48px;
+    text-align: center;
+}
+
+.lim {
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.red { color: #e53e3e; }
+.black { color: #2d3748; }
+
+/* 開始ボタン */
+.start {
+    position: static !important;
+    display: block;
+    width: 240px;
+    height: 48px;
+    margin: 20px auto 0;
+    background-color: #dd6b20;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(221, 107, 32, 0.3);
+    transition: all 0.2s ease;
+}
+
+.start:hover {
+    background-color: #c05621;
+    transform: translateY(-2px);
+}
+
+/* ==================================================
+   3. ゲーム進行画面（会話・メッセージ）
+   ================================================== */
+.gamesc {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.next, .Status, .StatusBuck {
+    font-family: sans-serif;
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    background-color: #2b4c59;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 10px;
+    position: relative;
+    z-index: 5;
+}
+
+.next:hover, .Status:hover, .StatusBuck:hover {
+    background-color: #1a323d;
+}
+
+.sptxbox {
+    width: 90%;
+    max-width: 800px;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#spebox {
+    background-color: #2b4c59;
+    color: #ffffff;
+    width: 160px;
+    height: 34px;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#speaker {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+#messbox {
+    background-color: #ffffff;
+    border: 3px solid #2b4c59;
+    border-radius: 0 8px 8px 8px;
+    padding: 16px 20px;
+    height: 130px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#text {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ==================================================
+   4. 選択肢（コマンド）& ダイス画面
+   ================================================== */
+#cmd-screen[style*="display: block"],
+#dice-screen[style*="display: block"] {
+    display: flex !important;
+}
+
+#cmd-screen, #dice-screen {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    z-index: 100;
+}
+
+.cmdtx, .dicetx {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0 0 40px 0;
+    padding: 0;
+    text-align: center;
+    line-height: 1.8;
+}
+
+.cmdtx ruby rt, .dicetx ruby rt {
+    font-size: 0.9rem;
+    transform: translateY(-2px);
 }
 
 #cmd {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 0;
 }
-/* .dice-screen{
-    margin-top: 30%;
-    
-} */
- .dicetx,.cmdtx{
-    font-size: 40px;
-    padding-left: 30vw;
-    padding-top: 180px;
- }
 
- .cmd,.dicescreen{
-    margin-top: 32px;
- }
-
-.dicescreen{
-    margin-left: 40%;
+.cmd1, .cmd2, .cmd3, .dicescreen {
+    width: 220px;
+    height: 70px;
+    font-size: 1.05rem;
+    font-weight: bold;
+    background-color: #ffffff;
+    border: 2px solid #2b4c59;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
     display: flex;
-    justify-content: center; /* 水平方向中央揃え */
-    align-items: center; /* 垂直方向中央揃え */
-    width: 200px;
-    height: 80px;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
 }
 
-.gameover a{
-    font-size: 30px;
-    padding-left: 40vw;
-}
-.reset{
-    padding-left:80vw;
+.cmd1:hover, .cmd2:hover, .cmd3:hover, .dicescreen:hover {
+    background-color: #2b4c59;
+    color: #ffffff;
+    transform: translateY(-2px);
 }
 
-#end a{
-    font-size:30px;
-    padding-left:40vw;
-}
-.cmd1,.cmd2,.cmd3{
-    width: 200px;
-    height: 80px;
+.dicescreen {
+    margin: 0 auto;
 }
 
-#reset {
-    width: 150px;
-    height: 60px;
+/* ==================================================
+   5. カウントダウン（黒画面テキスト中央寄せ）
+   ================================================== */
+.count {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.countpa {
+    display: none;
+}
+
+.counttx {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    margin: 0;
+    font-size: 2.2rem;
+    text-align: center;
+    line-height: 2.4;
+    width: 100%;
+}
+
+.counttx ruby rt {
+    font-size: 0.85rem;
+    transform: translateY(-2px);
+}
+
+.count .next {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+/* ステータス確認画面 */
+#sta-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    padding: 30px 40px;
+    border: 2px solid #2b4c59;
+    border-radius: 10px;
+    z-index: 100;
+    width: 90%;
+    max-width: 500px;
+}
+
+.sta-top-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+/* ==================================================
+   6. ゲームオーバー & エンド画面
+   ================================================== */
+.gameover {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .gameovertx {
-    margin-top: 200px;
-    font-size: 90px;
-    padding-left: 30vw;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
-#sptxbox{
-    padding-bottom: 30px;
-     position: absolute;
-    bottom: 90%; 
+
+#end {
+    position: absolute;
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    width: 100%;
 }
-@media screen and (max-width:780px) {
-    .cmdtx,.dicetx{
-        padding-left: 20px;
-    }
-    .gameovertx{
-        padding-left: 20vw;
+
+#end a {
+    font-size: 1.25rem;
+    color: #2b6cb0;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.end-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+    font-family: sans-serif;
+}
+
+#reset, .top-btn {
+    width: 170px;
+    height: 52px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+}
+
+#reset {
+    background-color: #ffffff;
+    border: 2px solid #2b4c59;
+    color: #2b4c59;
+}
+
+#reset:hover {
+    background-color: #2b4c59;
+    color: #ffffff;
+}
+
+.top-btn {
+    background-color: #dd6b20;
+    color: #ffffff !important;
+    text-decoration: none;
+    border: none;
+}
+
+.top-btn:hover {
+    background-color: #c05621;
+    transform: translateY(-2px);
+}
+
+/* ==================================================
+   7. レスポンシブ対応 (メディアクエリ：スマホ等)
+   ================================================== */
+@media screen and (max-width: 780px) {
+    /* ロゴ画像のサイズをスマホ用に縮小 */
+    .logo {
+        width: 50px;
+        top: 10px;
+        right: 10px;
     }
 
-    .next, .Status{
-        margin-top: 20px;
-        margin-left: 5px;
-        width: 150px;
+    /* 会話画面：メッセージボックスを画面下部に配置 */
+    .sptxbox {
+        position: absolute !important;
+        bottom: 20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 92% !important;
+        margin: 0 !important;
+    }
+
+    #spebox {
+        width: 120px;
         height: 30px;
     }
-    #reset{
-        width:150px;
-        height:30px;
-    }
-}
 
-@media screen and (max-width:780px) {
-    .next, .Status, #reset{
-        width: 130px;
-       
-    }
-    .reset{
-        padding-left:20%;
-    }
-    .status-screen{
-    /* 初期設定画面全体 */
-    padding-left: 10vw;
-    padding-top: 30px;
-    }
-    .staset{
-        left: 200px;
-    }   
-    .syokista span{
-        position: absolute;
-        left: 140px;
-    }
-    .start{
-       position: static;
-       margin-top: 25px;
-    }
-    .cmdtx,.dicetx{
-        padding-left: 5px;
-        font-size: 25px;
+    #speaker {
+        font-size: 0.85rem;
     }
 
-    #text{
-        font-size: 18px;
+    #messbox {
+        height: 110px;
+        padding: 12px;
     }
-    #spebox {
-        transform: translateX(0%);
-        width: 90px;
-        margin-left: 5%;
-    }
- 
-    #end a {
-        padding-left: 10%;
-        font-size: 20px;
-    }
-/*    #reset{
 
-    }*/
-    .gameovertx{
-        font-size: 30px;
+    #text {
+        font-size: 1rem;
+        line-height: 1.5;
     }
-    .counttx {
-        padding-left: 5%;
-        font-size: 30px;
-    }
-    .logo{
-        width: 50px;
-        top: 25px;
-        right: 20px;
 
+    /* コマンド・ダイス画面：タイトルフォント縮小＆ロゴ被り防止 */
+    .cmdtx, .dicetx {
+        font-size: 1.25rem;
+        margin-bottom: 20px;
+        padding: 0 10px;
+        width: 85%;
     }
-    
+
+    #cmd {
+        gap: 10px;
+        width: 90%;
+    }
+
+    .cmd1, .cmd2, .cmd3, .dicescreen {
+        width: 100%;
+        height: 50px;
+        font-size: 0.95rem;
+    }
+
+    .gameovertx {
+        font-size: 2.2rem;
+        top: 30%;
+    }
+
+    .end-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #reset, .top-btn {
+        width: 160px;
+        height: 45px;
+        font-size: 0.9rem;
+    }
 }

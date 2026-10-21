@@ -12,7 +12,7 @@
     <!-- トップへ戻るボタン（初期設定画面用） -->
     <a href="../index.html" class="back-to-top">← トップへ戻る</a>
 
-    <img class="logo" src="img/logo2.jpg">
+    <img class="logo" src="../common/img/logo2.jpg">
     <h1>初期設定</h1>
       <label for="playerName">プレイヤー名:</label>
       <input type="text" id="playerName" maxlength="10" placeholder="入力欄（最大10文字）">
@@ -38,7 +38,7 @@
     <div>
       <a href="../index.html" class="back-to-top">← ゲームをやめてトップへ戻る</a>
     </div>
-     <img class="logo" src="img/logo2.jpg">
+     <img class="logo" src="../common/img/logo2.jpg">
     <button id="StatusBuck" class="StatusBuck">ゲームに戻る</button>
     <h1>ステータス</h1>
           <p>Name:<span id="playerName_game"></span></p>
@@ -49,7 +49,7 @@
   </div>
 
   <div id="cmd-screen" style="display: none;" class="cmd-screen">
-    <img class="logo" src="img/logo2.jpg">
+    <img class="logo" src="../common/img/logo2.jpg">
     <div class="cmdtx">コマンドを<ruby>選択<rt>せんたく</rt></ruby>してください</div>
     <div id="cmd">
       <button id="cmd1" class="cmd1"><span id="cmdtext1"></span></button>
@@ -64,7 +64,7 @@
   </div>
 
   <div id="game-screen" class="gamesc" style="display: none;">
-    <img class="logo" src="img/logo2.jpg">
+    <img class="logo" src="../common/img/logo2.jpg">
     <button id="Status" class="Status">ステータス確認</button>
     <button class="next" id="next">次へ</button>
     <div class="sptxbox">
@@ -82,30 +82,30 @@
   </div>
 
   <div id="dice-screen" style="display: none;">
-    <img class="logo" src="img/logo2.jpg">
+    <img class="logo" src="../common/img/logo2.jpg">
       <div class="dicetx">ダイスを<ruby>振<rt>ふ</rt></ruby>ってください。</div>
       <button id="dicescreen" class="dicescreen">ダイスを<ruby>振<rt>ふ</rt></ruby>る</button>
   </div>
 
   <div id="gameover" class="gameover" style="display: none;">
-    <img class="logo" src="img/logo2.jpg">
+    <img class="logo" src="../common/img/logo2.jpg">
       <div class="gameovertx">BAD END...</div>
   </div>
 
   <div id="Trueend" class="gameover" style="display: none;">
-    <img class="logo" src="img/logo2.jpg">
+    <img class="logo" src="../common/img/logo2.jpg">
       <div class="gameovertx">BITTER END...</div>
   </div>
 
   <div id="Happyend" class="gameover" style="display: none;">
-    <img class="logo" src="img/logo2.jpg">
+    <img class="logo" src="../common/img/logo2.jpg">
       <div class="gameovertx">HAPPY END</div>
   </div>
 
   <!-- ゲーム終了時の画面 -->
   <div id="end" style="display:none">
         <div id="ec3" class="ec3">
-            <a href="https://docs.google.com/presentation/d/1qwAchm12Bnkz1ouAh-PxaJwLs6qKSlwM/edit?usp=drive_link&ouid=103859938448823707397&rtpof=true&sd=true">ec3 活動紹介ページへ！</a>
+            <!-- <a href="https://docs.google.com/presentation/d/1qwAchm12Bnkz1ouAh-PxaJwLs6qKSlwM/edit?usp=drive_link&ouid=103859938448823707397&rtpof=true&sd=true">ec3 活動紹介ページへ！</a> -->
         </div>
         <div class="end-actions">
             <button id="reset">はじめから</button>
@@ -114,10 +114,10 @@
         </div>
   </div>
 
-  <script src="define.js"></script>
+  <script src="../common/define.js"></script>
   <script src="story-data.js"></script>
-  <script src="status.js"></script>
-  <script src="setting.js"></script>
-  <script src="script.js"></script>
+  <!-- <script src="../common/status.js"></script> -->
+  <script src="../common/setting.js"></script>
+  <script src="../common/script.js"></script>
 </body>
 </html>
