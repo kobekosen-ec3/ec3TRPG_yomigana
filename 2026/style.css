@@ -1,7 +1,40 @@
 @charset "UTF-8";
 
 /* ==================================================
-   1. 基本設定（PC画面フィット・スクロール防止）
+   1. カラー＆デザイン変数（厳選＆アクセントカラー統一）
+   ================================================== */
+:root {
+    /* 1. 背景カラー */
+    --bg-color: #f7f3e8;         /* 羊皮紙風ライトベージュ */
+    --card-bg: #ffffff;          /* ボックス白背景 */
+
+    /* 2. メインカラー（ネイビー） */
+    --main-color: #2a4958;       /* 枠線・見出しの統一ネイビー */
+    --main-hover: #49955c;
+
+    /* 3. アクセントカラー（アクションボタン統一色） */
+    --accent-color: #00a0e9;     /* すべてのアクションボタン（スタート・次へ・確認等）の統一オレンジ */
+    --accent-hover: #064967;     /* ホバー時の濃いオレンジ */
+
+    /* 4. 警告用赤 */
+    --danger-red: #e53e3e;       /* 上限オーバー時などの赤 */
+
+    /* 文字色 */
+    --text-dark: #1a202c;
+    --text-white: #ffffff;
+    --border-gray: #cbd5e0;
+
+    /* 共通サイズ */
+    --border-radius: 8px;
+
+    /* ホバー・発光エフェクト（統一） */
+    --shadow-card: 0 6px 24px rgba(27, 54, 93, 0.12);
+    --shadow-button: 0 3px 8px rgba(0, 0, 0, 0.2);
+    --glow-effect: 0 0 14px rgba(100, 173, 196, 0.75); /* アクセント（オレンジ）統一発光 */
+}
+
+/* ==================================================
+   2. 基本設定
    ================================================== */
 * {
     box-sizing: border-box;
@@ -13,9 +46,9 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #f7f3e8;
+    background-color: var(--bg-color);
     font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-    color: #1a202c;
+    color: var(--text-dark);
 }
 
 /* ルビ（ふりがな）削除切り替え */
@@ -25,7 +58,7 @@ html, body {
 
 /* ロゴ画像 */
 .logo {
-    width: 110px;
+    width: 100px;
     position: absolute;
     right: 25px;
     top: 20px;
@@ -33,17 +66,17 @@ html, body {
 }
 
 /* ==================================================
-   2. 初期設定画面（ステータス作成）
+   3. 初期設定画面（ステータス作成）
    ================================================== */
 .status-screen {
     width: 90%;
     max-width: 650px;
     margin: 0;
     padding: 25px 35px 30px;
-    background-color: #ffffff;
-    border: 2px solid #2b4c59;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg);
+    border: 2px solid var(--main-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-card);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -52,40 +85,59 @@ html, body {
 
 .back-to-top {
     display: inline-block;
-    margin-bottom: 12px;
-    color: #2b6cb0;
+    margin-bottom: 15px;
+    color: var(--main-color);
     text-decoration: none;
     font-weight: bold;
     font-size: 0.85rem;
     font-family: sans-serif;
     padding: 6px 12px;
-    background-color: #f0f4f8;
+    background-color: var(--card-bg);
     border-radius: 6px;
-    border: 1px solid #cbd5e0;
-    transition: all 0.2s ease;
+    border: 1px solid var(--border-gray);
+    transition: all 0.25s ease;
 }
 
 .back-to-top:hover {
-    background-color: #2b6cb0;
-    color: #ffffff;
+    background-color: var(--main-color);
+    color: var(--text-white);
+    border-color: var(--main-color);
+    box-shadow: 0 0 10px rgba(27, 54, 93, 0.4);
 }
 
 .status-screen h1 {
     font-size: 1.5rem;
-    margin: 5px 0 15px;
+    margin: 0 0 15px 0;
+    color: var(--main-color);
+    border-bottom: 2px solid var(--main-color);
+    padding-bottom: 4px;
+    display: block;
 }
 
 .status-screen h2 {
     font-size: 1.1rem;
-    margin: 10px 0 5px;
+    margin: 15px 0 8px;
+    color: var(--main-color);
+}
+
+.player-name-area {
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 #playerName {
-    margin-left: 12px;
     padding: 6px 10px;
     font-size: 0.95rem;
-    border: 1px solid #cbd5e0;
+    border: 1px solid var(--border-gray);
     border-radius: 4px;
+    outline: none;
+    width: 220px;
+}
+
+#playerName:focus {
+    border-color: var(--main-color);
 }
 
 .ruby-toggle {
@@ -98,7 +150,6 @@ html, body {
     font-size: 1rem;
 }
 
-/* ダイスボタンと数値を縦揃え（CSS Gridレイアウト） */
 .syokista p {
     display: grid;
     grid-template-columns: 100px 40px 60px;
@@ -108,7 +159,7 @@ html, body {
 
 .syokista span {
     font-weight: bold;
-    color: #1a365d;
+    color: var(--main-color);
     text-align: center;
     min-height: 1.2em;
     padding-left: 0;
@@ -118,11 +169,21 @@ html, body {
     cursor: pointer;
     font-size: 1rem;
     padding: 4px 8px;
-    border: 1px solid #cbd5e0;
+    border: 1px solid var(--border-gray);
     border-radius: 4px;
-    background-color: #f7fafc;
+    background-color: var(--card-bg);
+    color: var(--main-color);
     width: 48px;
     text-align: center;
+    transition: all 0.25s ease;
+}
+
+.staset:hover {
+    background-color: var(--main-color);
+    color: var(--text-white);
+    border-color: var(--main-color);
+    box-shadow: 0 0 10px rgba(27, 54, 93, 0.4);
+    transform: translateY(-1px);
 }
 
 .lim {
@@ -130,34 +191,36 @@ html, body {
     font-weight: bold;
 }
 
-.red { color: #e53e3e; }
-.black { color: #2d3748; }
+.red { color: var(--danger-red); }
+.black { color: var(--text-dark); }
 
-/* 開始ボタン */
+/* ゲーム開始ボタン（アクセントカラー統一） */
 .start {
     position: static !important;
     display: block;
     width: 240px;
     height: 48px;
     margin: 20px auto 0;
-    background-color: #dd6b20;
-    color: #ffffff;
+    background-color: var(--accent-color);
+    color: var(--text-white);
     font-size: 1.05rem;
     font-weight: bold;
+    font-family: sans-serif;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(221, 107, 32, 0.3);
-    transition: all 0.2s ease;
+    box-shadow: var(--shadow-button);
+    transition: all 0.25s ease;
 }
 
 .start:hover {
-    background-color: #c05621;
+    background-color: var(--accent-hover);
     transform: translateY(-2px);
+    box-shadow: var(--glow-effect);
 }
 
 /* ==================================================
-   3. ゲーム進行画面（会話・メッセージ）
+   4. ゲーム進行画面（会話・メッセージ）
    ================================================== */
 .gamesc {
     width: 100vw;
@@ -167,59 +230,66 @@ html, body {
     box-sizing: border-box;
 }
 
-.next, .Status, .StatusBuck {
+/* アクションボタンの全デザイン統一（アクセントカラー） */
+.next, .Status, .StatusBuck, .count #nextco {
     font-family: sans-serif;
-    padding: 8px 16px;
+    padding: 8px 22px;
     font-size: 0.95rem;
     font-weight: bold;
-    background-color: #2b4c59;
-    color: #ffffff;
+    background-color: var(--accent-color);
+    color: var(--text-white) !important;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     margin-right: 10px;
     position: relative;
     z-index: 5;
+    box-shadow: var(--shadow-button);
+    transition: all 0.25s ease;
 }
 
-.next:hover, .Status:hover, .StatusBuck:hover {
-    background-color: #1a323d;
+.next:hover, .Status:hover, .StatusBuck:hover, .count #nextco:hover {
+    background-color: var(--accent-hover);
+    box-shadow: var(--glow-effect);
+    transform: translateY(-2px);
 }
 
+/* メッセージボックス */
 .sptxbox {
     width: 90%;
     max-width: 800px;
     position: absolute;
-    bottom: 40px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
 }
 
 #spebox {
-    background-color: #2b4c59;
-    color: #ffffff;
+    background-color: var(--main-color);
+    color: var(--text-white);
     width: 160px;
-    height: 34px;
+    height: 36px;
     border-radius: 6px 6px 0 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: none !important;
 }
 
 #speaker {
-    color: #ffffff;
+    color: var(--text-white);
     font-size: 1rem;
     font-weight: bold;
     margin: 0;
 }
 
 #messbox {
-    background-color: #ffffff;
-    border: 3px solid #2b4c59;
-    border-radius: 0 8px 8px 8px;
+    background-color: var(--card-bg);
+    border: 3px solid var(--main-color);
+    border-radius: 0 var(--border-radius) var(--border-radius) var(--border-radius);
     padding: 16px 20px;
     height: 130px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-card);
 }
 
 #text {
@@ -229,7 +299,7 @@ html, body {
 }
 
 /* ==================================================
-   4. 選択肢（コマンド）& ダイス画面
+   5. 選択肢（コマンド）& ダイス画面
    ================================================== */
 #cmd-screen[style*="display: block"],
 #dice-screen[style*="display: block"] {
@@ -251,16 +321,17 @@ html, body {
 }
 
 .cmdtx, .dicetx {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: bold;
-    margin: 0 0 40px 0;
+    color: var(--main-color);
+    margin: 0 0 35px 0;
     padding: 0;
     text-align: center;
     line-height: 1.8;
 }
 
 .cmdtx ruby rt, .dicetx ruby rt {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transform: translateY(-2px);
 }
 
@@ -275,15 +346,17 @@ html, body {
 
 .cmd1, .cmd2, .cmd3, .dicescreen {
     width: 220px;
-    height: 70px;
+    height: 65px;
     font-size: 1.05rem;
     font-weight: bold;
-    background-color: #ffffff;
-    border: 2px solid #2b4c59;
-    border-radius: 8px;
+    font-family: sans-serif;
+    background-color: var(--card-bg);
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+    border-radius: var(--border-radius);
     cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+    box-shadow: var(--shadow-button);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -291,9 +364,10 @@ html, body {
 }
 
 .cmd1:hover, .cmd2:hover, .cmd3:hover, .dicescreen:hover {
-    background-color: #2b4c59;
-    color: #ffffff;
-    transform: translateY(-2px);
+    background-color: var(--main-color);
+    color: var(--text-white);
+    transform: translateY(-3px);
+    box-shadow: 0 0 14px rgba(27, 54, 93, 0.6);
 }
 
 .dicescreen {
@@ -301,7 +375,7 @@ html, body {
 }
 
 /* ==================================================
-   5. カウントダウン（黒画面テキスト中央寄せ）
+   6. カウントダウン（黒画面）
    ================================================== */
 .count {
     position: fixed;
@@ -331,6 +405,7 @@ html, body {
     text-align: center;
     line-height: 2.4;
     width: 100%;
+    color: var(--text-white);
 }
 
 .counttx ruby rt {
@@ -338,10 +413,29 @@ html, body {
     transform: translateY(-2px);
 }
 
-.count .next {
+/* 黒画面「次へ」ボタン */
+.count #nextco {
     position: absolute;
-    top: 30px;
-    right: 30px;
+    top: 25px;
+    left: 25px;
+    right: auto;
+    margin: 0;
+    z-index: 2001;
+    animation: glow-pulse 1.8s infinite;
+}
+
+@keyframes glow-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(221, 107, 32, 0.7);
+    }
+    50% {
+        box-shadow: var(--glow-effect);
+        transform: scale(1.03);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(221, 107, 32, 0);
+        transform: scale(1);
+    }
 }
 
 /* ステータス確認画面 */
@@ -350,10 +444,11 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #ffffff;
+    background: var(--card-bg);
     padding: 30px 40px;
-    border: 2px solid #2b4c59;
-    border-radius: 10px;
+    border: 2px solid var(--main-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-card);
     z-index: 100;
     width: 90%;
     max-width: 500px;
@@ -368,7 +463,7 @@ html, body {
 }
 
 /* ==================================================
-   6. ゲームオーバー & エンド画面
+   7. ゲームオーバー & エンド画面
    ================================================== */
 .gameover {
     width: 100vw;
@@ -389,6 +484,7 @@ html, body {
     transform: translate(-50%, -50%);
     font-size: 4.5rem;
     font-weight: bold;
+    color: var(--main-color);
     letter-spacing: 2px;
     text-align: center;
     margin: 0;
@@ -408,9 +504,18 @@ html, body {
 
 #end a {
     font-size: 1.25rem;
-    color: #2b6cb0;
+    color: var(--main-color);
     font-family: sans-serif;
     font-weight: bold;
+    text-decoration: none;
+    /* border-bottom: 2px dashed var(--main-color); */
+    padding-bottom: 2px;
+    transition: all 0.25s ease;
+}
+
+#end a:hover {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
 }
 
 .end-actions {
@@ -424,53 +529,53 @@ html, body {
 
 #reset, .top-btn {
     width: 170px;
-    height: 52px;
+    height: 50px;
     font-size: 1rem;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.2s ease;
+    box-shadow: var(--shadow-button);
+    transition: all 0.25s ease;
 }
 
 #reset {
-    background-color: #ffffff;
-    border: 2px solid #2b4c59;
-    color: #2b4c59;
+    background-color: var(--card-bg);
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
 }
 
 #reset:hover {
-    background-color: #2b4c59;
-    color: #ffffff;
+    background-color: var(--main-color);
+    color: var(--text-white);
+    box-shadow: 0 0 14px rgba(27, 54, 93, 0.6);
 }
 
 .top-btn {
-    background-color: #dd6b20;
-    color: #ffffff !important;
+    background-color: var(--accent-color);
+    color: var(--text-white) !important;
     text-decoration: none;
     border: none;
 }
 
 .top-btn:hover {
-    background-color: #c05621;
+    background-color: var(--accent-hover);
     transform: translateY(-2px);
+    box-shadow: var(--glow-effect);
 }
 
 /* ==================================================
-   7. レスポンシブ対応 (メディアクエリ：スマホ等)
+   8. レスポンシブ対応 (スマホ等)
    ================================================== */
 @media screen and (max-width: 780px) {
-    /* ロゴ画像のサイズをスマホ用に縮小 */
     .logo {
         width: 50px;
         top: 10px;
         right: 10px;
     }
 
-    /* 会話画面：メッセージボックスを画面下部に配置 */
     .sptxbox {
         position: absolute !important;
         bottom: 20px !important;
@@ -499,7 +604,6 @@ html, body {
         line-height: 1.5;
     }
 
-    /* コマンド・ダイス画面：タイトルフォント縮小＆ロゴ被り防止 */
     .cmdtx, .dicetx {
         font-size: 1.25rem;
         margin-bottom: 20px;
@@ -532,5 +636,12 @@ html, body {
         width: 160px;
         height: 45px;
         font-size: 0.9rem;
+    }
+
+    .count #nextco {
+        top: 15px;
+        left: 15px;
+        font-size: 0.85rem;
+        padding: 6px 16px;
     }
 }
