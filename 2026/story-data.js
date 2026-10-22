@@ -14,230 +14,218 @@ function createStory(...parts) {
   });
 }
 
-// ==================================================
-// プロローグ：都市直下型地震の発生
-// ==================================================
 const story1 = createStory(
   {
     speaker: "ナレーター",
     text: `
       {hours}<ruby>時<rt>じ</rt></ruby>{minutes}<ruby>分<rt>ぷん</rt></ruby>。
-      <ruby>突如<rt>とつじょ</rt></ruby>、グワッと<ruby>地面<rt>じめん</rt></ruby>が<ruby>突<rt>つ</rt></ruby>き<ruby>上<rt>あ</rt></ruby>げられ、都市を<ruby>激<rt>はげ</rt></ruby>しい<ruby>縦揺<rt>たてゆ</rt></ruby>れが<ruby>襲<rt>おそ</rt></ruby>った！
-      周囲のビルからはガラスが<ruby>飛散<rt>ひさん</rt></ruby>し、<ruby>看板<rt>かんばん</rt></ruby>が<ruby>落下<rt>らっか</rt></ruby>してアスファルトに激突する。
+      <ruby>町全体<rt>まちぜんたい</rt></ruby>を<ruby>大<rt>おお</rt></ruby>きな<ruby>揺<rt>ゆ</rt></ruby>れが<ruby>襲<rt>おそ</rt></ruby>う。
+      <ruby>鳴<rt>な</rt></ruby>りやまない<ruby>地鳴<rt>じな</rt></ruby>り、<ruby>傾<rt>かたむ</rt></ruby>く<ruby>電柱<rt>でんちゅう</rt></ruby>、そして<ruby>無線<rt>むせん</rt></ruby>の<ruby>声<rt>こえ</rt></ruby>。
     `
   },
   {
-    speaker: "<ruby>緊急防災アナウンス<rt>きんきゅうぼうさいあなうんす</rt></ruby>",
+    speaker: "<ruby>防災無線<rt>ぼうさいむせん</rt></ruby>",
     text: `
-      「ウー！ ウー！ <ruby>大地震発生<rt>だいじしんはっせい</rt></ruby>。各地で<ruby>火災<rt>かさい</rt></ruby>が<ruby>発生<rt>はっせい</rt></ruby>しています。
-      <ruby>大規模<rt>だいきぼ</rt></ruby>な<ruby>火災旋風<rt>かさいせんぷう</rt></ruby>の<ruby>危険<rt>きけん</rt></ruby>があります。
-      <ruby>避難完了<rt>ひなんかんりょう</rt></ruby>まで<ruby>残<rt>のこ</rt></ruby>りおよそ10<ruby>分<rt>ぷん</rt></ruby>。
-      ただちに<ruby>高台<rt>たかだい</rt></ruby>の<ruby>広域避難場所<rt>こういきひなんばしょ</rt></ruby>・<ruby>総合公園<rt>そうごうこうえん</rt></ruby>へ<ruby>避難<rt>ひなん</rt></ruby>してください！」
+      「こちら〇〇町<ruby>防災<rt>ぼうさい</rt></ruby>センター。
+      <ruby>津波警報発令<rt>つなみけいほうはつれい</rt></ruby>。
+      <ruby>津波到達<rt>つなみとうたつ</rt></ruby>まで<ruby>約<rt>やく</rt></ruby>10<ruby>分<rt>ぷん</rt></ruby>。
+      <ruby>高台<rt>たかだい</rt></ruby>、または<ruby>指定避難所<rt>していひなんじょ</rt></ruby>へ<ruby>避難<rt>ひなん</rt></ruby>してください――<ruby>繰<rt>く</rt></ruby>り<ruby>返<rt>かえ</rt></ruby>します――」
     `
   },
   {
     speaker: "ナレーター",
     text: `
-      あなたは<ruby>混雑<rt>こんざつ</rt></ruby>する<ruby>駅前<rt>えきまえ</rt></ruby>の<ruby>商店街<rt>しょうてんがい</rt></ruby>の中にいた。
-      <ruby>黒煙<rt>こくえん</rt></ruby>が立ち上り、あちこちから悲鳴が響き渡る。
-      <ruby>炎<rt>ほのお</rt></ruby>と煙に包まれる前に、命がけの脱出劇が始まる！
+      あなたは<ruby>海辺<rt>うみべ</rt></ruby>の<ruby>商店街<rt>しょうてんがい</rt></ruby>にいた。
+      <ruby>家<rt>いえ</rt></ruby>も、<ruby>荷物<rt>にもつ</rt></ruby>も、すべてを<ruby>捨<rt>す</rt></ruby>てて、いま<ruby>命<rt>いのち</rt></ruby>だけを<ruby>抱<rt>かか</rt></ruby>えて――<ruby>走<rt>はし</rt></ruby>らなければならない。
     `
   }
 );
 
-// ==================================================
-// ステージ1：倒壊する商店街からの脱出
-// ==================================================
 const story2 = createStory(
   {
     speaker: "ナレーター",
     text: `
-      古いアーケードの天井が突き破られ、瓦礫が道路を塞いでいる。
-      停電で信号は消え、パニックになった人々が右往左往している。
-      どこを通って脱出を試みるか？
+        <ruby>店<rt>みせ</rt></ruby>のガラスが<ruby>割<rt>わ</rt></ruby>れ、<ruby>道路<rt>どうろ</rt></ruby>に<ruby>亀裂<rt>きれつ</rt></ruby>が<ruby>走<rt>はし</rt></ruby>っている。
+        <ruby>携帯<rt>けいたい</rt></ruby>は<ruby>圏外<rt>けんがい</rt></ruby>。<ruby>周<rt>まわ</rt></ruby>りはパニックだ。
     `
-  }
+  },
 );
 
-const story2_1 = [
-  { speaker: "ナレーター", text: "{playerName}は瓦礫の隙間をぬって、高台に通じる坂道へ全力で走り出した！" },
-  { speaker: "ナレーター", text: "足元には砕けたガラスや看板が散乱している……！" }
-];
-const story2_1_s = [
-  { speaker: "ナレーター", text: "優れた身体能力で見事に障害物を飛び越え、最短ルートを突破した！" }
-];
-const story2_1_m = [
-  { speaker: "ナレーター", text: "崩れた瓦礫に足を取られて激しく転倒！ 膝を痛めてタイムロスとなった……", effect: () => { Time -= 1; } }
+
+const story2_1 =[
+    {speaker: "ナレーター", text: "{playerName}は<ruby>高台<rt>たかだい</rt></ruby>に<ruby>向<rt>む</rt></ruby>かうことにした。" }
 ];
 
-const story2_2 = [
-  { speaker: "ナレーター", text: "{playerName}は倒れてきた陳列棚の下敷きになっているお店の人を発見した。" },
-  { speaker: "ナレーター", text: "「助けてくれ！」悲痛な叫び声が聞こえる……！" }
-];
-const story2_2_s = [
-  { speaker: "ナレーター", text: "「大丈夫ですか！」冷静に構造を見極め、棚を持ち上げて救出に成功した！", effect: () => { person = 1; Time -= 1; } }
-];
-const story2_2_m = [
-  { speaker: "ナレーター", text: "棚が重すぎて一人では持ち上がらない！ 焦りだけが募り、時間を空費してしまった……", effect: () => { Time -= 1; } }
+const story2_1_s =[
+    { speaker: "ナレーター", text: "<ruby>道<rt>みち</rt></ruby>は<ruby>比較的<rt>ひかくてき</rt></ruby><ruby>安定<rt>あんてい</rt></ruby>していた。" }
 ];
 
-const story2_3 = [
-  { speaker: "ナレーター", text: "{playerName}は放置された放置バイクを使って一気に駆け抜けようと考えた。" }
-];
-const story2_3_s = [
-  { speaker: "ナレーター", text: "運よく鍵がついたままのバイクを発見！ 倒壊エリアを一気に走り抜けた！", effect: () => { Time += 1; } }
-];
-const story2_3_m = [
-  { speaker: "ナレーター", text: "走り出した瞬間、目の前の道路がひび割れて大転倒！ バイクを乗り捨てる羽目になった……", effect: () => { Time -= 2; } }
+const story2_1_m =[
+    { speaker: "ナレーター", text: "<ruby>転<rt>ころ</rt></ruby>んでしまった。" , effect: () => { Time -= 1; }}
 ];
 
-// ==================================================
-// ステージ2：火災と大渋滞の駅前交差点
-// ==================================================
+const story2_2 =[
+    {speaker: "ナレーター", text: "{playerName}は<ruby>周<rt>まわ</rt></ruby>りの<ruby>人<rt>ひと</rt></ruby>を<ruby>助<rt>たす</rt></ruby>けることにした。" }
+];
+
+const story2_2_s =[
+    { speaker: "ナレーター", text: "<ruby>困<rt>こま</rt></ruby>っているお<ruby>年寄<rt>としよ</rt></ruby>りを<ruby>無事<rt>ぶじ</rt></ruby>に<ruby>救助<rt>きゅうじょ</rt></ruby>した" , effect: () => { person = 1;Time -= 1; }}
+];
+const story2_2_m =[
+    { speaker: "ナレーター", text: "<ruby>救助<rt>きゅうじょ</rt></ruby>に<ruby>失敗<rt>しっぱい</rt></ruby>した", effect: () => { Time -= 1; }  },
+];
+const story2_3 =[
+    {speaker: "ナレーター", text: "{playerName}は<ruby>車<rt>くるま</rt></ruby>で<ruby>避難<rt>ひなん</rt></ruby>することにした。" }
+];
+const story2_3_s =[
+    { speaker: "ナレーター", text: "<ruby>無事<rt>ぶじ</rt></ruby>に<ruby>運転<rt>うんてん</rt></ruby>できた。", effect: () => { Time += 1; } }
+];
+
+const story2_3_m =[
+    { speaker: "ナレーター", text: "<ruby>渋滞<rt>じゅうたい</rt></ruby>で<ruby>動<rt>うご</rt></ruby>けなくなった。" , effect: () => { Time -= 2; }}
+];
+
 const story3 = [
-  { speaker: "ナレーター", text: "駅前交差点に到達した。乗り捨てられた自動車群で大渋滞が起き、完全に道が塞がれている。" },
-  { speaker: "ナレーター", text: "ガソリンの匂いと煙が立ち込め、いつ引火してもおかしくない危険な状態だ。" }
+    { speaker: "ナレーター", text: "<ruby>道路<rt>どうろ</rt></ruby>が<ruby>陥没<rt>かんぼつ</rt></ruby>している。<ruby>車<rt>くるま</rt></ruby>の<ruby>列<rt>れつ</rt></ruby>が<ruby>動<rt>うご</rt></ruby>かない。" },
+    { speaker: "ナレーター", text: "<ruby>人々<rt>ひとびと</rt></ruby>が<ruby>徒歩<rt>とほ</rt></ruby>で<ruby>先<rt>さき</rt></ruby>に<ruby>進<rt>すす</rt></ruby>もうとしている。" }
 ];
 
-const story3_1 = [
-  { speaker: "ナレーター", text: "{playerName}は自動車の屋根や高架下の線路を横断して突っ切ることにした！" }
-];
-const story3_1_s = [
-  { speaker: "ナレーター", text: "バランス感覚を発揮し、車の上をテンポよく飛び移って通り抜けた！", effect: () => { Time -= 1; } }
-];
-const story3_1_m = [
-  { speaker: "ナレーター", text: "足を滑らせて車の隙間に滑落！ 脱出するのに余計な時間を要してしまった……", effect: () => { Time -= 2; } }
+const story3_1 =[
+    {speaker: "ナレーター", text: "{playerName}は<ruby>線路<rt>せんろ</rt></ruby>を<ruby>渡<rt>わた</rt></ruby>ることにした。" }
 ];
 
-const story3_2 = [
-  { speaker: "ナレーター", text: "{playerName}は交差点を避け、少し離れた鉄橋側の迂回ルートを選択した。" }
-];
-const story3_2_s = [
-  { speaker: "ナレーター", text: "運よく迂回路は混雑しておらず、火災の影響を受けずに安全に進むことができた！", effect: () => { Time -= 1; } }
-];
-const story3_2_m = [
-  { speaker: "ナレーター", text: "迂回した先でガス管爆破が発生！ 炎で道が阻まれ、大きく引き返すことになった……", effect: () => { Time += 1; } }
+const story3_1_s =[
+    { speaker: "ナレーター", text: "<ruby>無事<rt>ぶじ</rt></ruby>に<ruby>線路<rt>せんろ</rt></ruby>を<ruby>渡<rt>わた</rt></ruby>りきった。" , effect: () => { Time -= 1; }}
 ];
 
-const story3_3 = [
-  { speaker: "ナレーター", text: "{playerName}は逃げ惑う人々に「あっちの広い道へ逃げましょう！」と大声で呼びかけた。" }
-];
-const story3_3_s = [
-  { speaker: "ナレーター", text: "的確な指示で集団のパニックを沈め、お互いに助け合いながら脱出に成功した！", effect: () => { person = 1; Time += 1; } }
-];
-const story3_3_m = [
-  { speaker: "ナレーター", text: "周囲の怒号とサイレンの音にかき消され、誰にも声が届かなかった……", effect: () => { Time -= 1; } }
+const story3_1_m =[
+    { speaker: "ナレーター", text: "<ruby>転<rt>ころ</rt></ruby>んでしまった。" , effect: () => { Time -= 2; }}
 ];
 
-// ==================================================
-// ステージ3：煙充満する住宅街
-// ==================================================
-const story4 = [
-  { speaker: "ナレーター", text: "住宅街に入ると、各所で同時発生した火災による黒煙が視界を奪う。" },
-  { speaker: "ナレーター", text: "息苦しさと熱気が迫る中、家屋の崩落音があちこちから轟いている。" }
+const story3_2 =[
+    {speaker: "ナレーター", text: "{playerName}は<ruby>遠回<rt>とおまわ</rt></ruby>りして<ruby>橋<rt>はし</rt></ruby>を<ruby>渡<rt>わた</rt></ruby>ることにした。" }
 ];
 
-const story4_1 = [
-  { speaker: "ナレーター", text: "{playerName}は体勢を低くし、煙を吸わないように姿勢を保って進んだ。" }
+const story3_2_s =[
+    { speaker: "ナレーター", text: "<ruby>無事<rt>ぶじ</rt></ruby>に<ruby>橋<rt>はし</rt></ruby>を<ruby>渡<rt>わた</rt></ruby>ることができた。" ,effect: () => { Time -= 1; }}
 ];
-const story4_1_s = [
-  { speaker: "ナレーター", text: "強い意志と体力で息を止めつつ、視界の悪い煙の帯を突破した！" }
+const story3_2_m =[
+    { speaker: "ナレーター", text: "<ruby>橋<rt>はし</rt></ruby>が<ruby>落<rt>お</rt></ruby>ちかけで<ruby>時間<rt>じかん</rt></ruby>を<ruby>取<rt>と</rt></ruby>られてしまった。", effect: () => { Time += 1; }  },
 ];
-const story4_1_m = [
-  { speaker: "ナレーター", text: "猛烈な煙を吸い込んでしまい、激しく咳き込んで足止めを食らってしまった！", effect: () => { Time -= 1; } }
+const story3_3 =[
+    {speaker: "ナレーター", text: "{playerName}はほかの<ruby>避難者<rt>ひなんしゃ</rt></ruby>に<ruby>声<rt>こえ</rt></ruby>をかけることにした。" }
 ];
-
-const story4_2 = [
-  { speaker: "ナレーター", text: "{playerName}は半壊した家屋の2階窓から助けを呼ぶ親子を発見した。" }
-];
-const story4_2_s = [
-  { speaker: "ナレーター", text: "危険を察知して素早くハシゴ代わりの物置を寄せ、親子を安全に地上へ救出した！", effect: () => { person = 1; Time -= 1; } }
-];
-const story4_2_m = [
-  { speaker: "ナレーター", text: "炎の勢いが強すぎて近づけない！ やむなく救助を断念して先へ急いだ……", effect: () => { Time -= 1; } }
+const story3_3_s =[
+    { speaker: "ナレーター", text: "<ruby>協力<rt>きょうりょく</rt></ruby>して<ruby>進<rt>すす</rt></ruby>むことになった。", effect: () => { person = 1;Time += 1; }}
 ];
 
-const story4_3 = [
-  { speaker: "ナレーター", text: "{playerName}は古くからある狭い裏路地を通る賭けに出た。" }
-];
-const story4_3_s = [
-  { speaker: "ナレーター", text: "運よく裏路地は火の手が回っておらず、大幅な短縮ルートとなった！", effect: () => { Time += 1; } }
-];
-const story4_3_m = [
-  { speaker: "ナレーター", text: "路地の先でブロック塀が倒壊しており完全に通行不能！ 引き返す羽目に……", effect: () => { Time -= 1; } }
+const story3_3_m =[
+    { speaker: "ナレーター", text: "<ruby>声<rt>こえ</rt></ruby>をかけられなかった。",effect: () => { Time -= 1; }}
 ];
 
-// ==================================================
-// ステージ4：迫り来る火災旋風（丘道）
-// ==================================================
-const story5 = [
-  { speaker: "ナレーター", text: "ゴォォォォ……という不気味な重低音が街中に響き渡る！" },
-  { speaker: "ナレーター", text: "背後を見ると、いくつもの火災が合体し、天を突く巨大な「火災旋風（炎の竜巻）」へと成長している！" },
-  { speaker: "ナレーター", text: "猛烈な熱風と巻き上げられた火の粉が背中に襲いかかる！" }
+const story4=[
+    { speaker:"ナレーター", text: "<ruby>水道管<rt>すいどうかん</rt></ruby>が<ruby>破裂<rt>はれつ</rt></ruby>し、<ruby>足元<rt>あしもと</rt></ruby>を<ruby>水<rt>みず</rt></ruby>が<ruby>流<rt>なが</rt></ruby>れる。"},
+    { speaker:"ナレーター", text: "<ruby>家<rt>いえ</rt></ruby>の<ruby>中<rt>なか</rt></ruby>から<ruby>助<rt>たす</rt></ruby>けを<ruby>求<rt>もと</rt></ruby>める<ruby>声<rt>こえ</rt></ruby>がする。"},
 ];
 
-const story5_1 = [
-  { speaker: "ナレーター", text: "{playerName}は火の粉を振り払いながら、総合公園へ続く最後の激坂を駆け上がった！" }
-];
-const story5_1_s = [
-  { speaker: "ナレーター", text: "火事場の馬鹿力を発揮！ 熱風を振り切って坂道を登り切った！" }
-];
-const story5_1_m = [
-  { speaker: "ナレーター", text: "酸欠と熱気で足がもつれ、坂の途中で膝をついてしまった……！", effect: () => { Time -= 1; } }
+const story4_1 =[
+    {speaker: "ナレーター", text: "{playerName}は<ruby>無視<rt>むし</rt></ruby>して<ruby>坂道<rt>さかみち</rt></ruby>を<ruby>登<rt>のぼ</rt></ruby>ることにした。" }
+    
 ];
 
-const story5_2 = [
-  { speaker: "ナレーター", text: "{playerName}は熱風に怯えて動けなくなった他の避難者の手を強く握りしめた。" },
-  { speaker: "ナレーター", text: "「諦めるな！ あと少しで公園だ！」" }
-];
-const story5_2_s = [
-  { speaker: "ナレーター", text: "励まされた避難者が力を取り戻し、二人は肩を組みながら高台へ辿り着いた！", effect: () => { person = 1; } }
-];
-const story5_2_m = [
-  { speaker: "ナレーター", text: "吹き荒れる熱風で二重の負担となり、著しく体力を削られてしまった……", effect: () => { Time -= 1; person = 1; } }
+const story4_1_s =[
+    { speaker: "ナレーター", text: "<ruby>無事<rt>ぶじ</rt></ruby>に<ruby>登<rt>のぼ</rt></ruby>りきれた。"}
 ];
 
-const story5_3 = [
-  { speaker: "ナレーター", text: "{playerName}は公園裏手の崖に設置された緊急避難階段を目指した。" }
-];
-const story5_3_s = [
-  { speaker: "ナレーター", text: "強運に恵まれ、炎の立ち上らない風上ルートを通って一気に頂上へ！", effect: () => { Time += 2; } }
-];
-const story5_3_m = [
-  { speaker: "ナレーター", text: "旋風によって煽られた炎が階段を包み込んだ！ 炎の中に巻き込まれてしまう……！" }
+const story4_1_m =[
+    { speaker: "ナレーター", text: "<ruby>転<rt>ころ</rt></ruby>んでしまった。" , effect: () => { Time -= 1; }}
 ];
 
-// ==================================================
-// ラストスパート＆エンディング分岐
-// ==================================================
+const story4_2 =[
+    {speaker: "ナレーター", text: "{playerName}は<ruby>救助<rt>きゅうじょ</rt></ruby>に<ruby>行<rt>い</rt></ruby>くことにした。" }
+];
+
+const story4_2_s =[
+    { speaker: "ナレーター", text: "<ruby>無事<rt>ぶじ</rt></ruby>に<ruby>救助<rt>きゅうじょ</rt></ruby>できた。" , effect: () => { person = 1;Time -= 1; }  }
+];
+const story4_2_m =[
+    { speaker: "ナレーター", text: "<ruby>助<rt>たす</rt></ruby>けられなかった。", effect: () => { Time -= 1; }  },
+];
+const story4_3 =[
+    {speaker: "ナレーター", text: "{playerName}は<ruby>近道<rt>ちかみち</rt></ruby>で<ruby>進<rt>すす</rt></ruby>むことにした。" }
+];
+const story4_3_s =[
+    { speaker: "ナレーター", text: "ショートカットできた。", effect: () => { Time += 1; } }
+];
+
+const story4_3_m =[
+    { speaker: "ナレーター", text: "<ruby>迷子<rt>まいご</rt></ruby>になってしまった。", effect: () => { Time -= 1; }}
+];
+
+
+const story5=[
+    { speaker:"ナレーター", text: "<ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>り<ruby>始<rt>はじ</rt></ruby>め、<ruby>地面<rt>じめん</rt></ruby>が<ruby>滑<rt>すべ</rt></ruby>りやすくなる。"},
+    { speaker:"ナレーター",text:"<ruby>後<rt>うし</rt></ruby>ろから<ruby>大<rt>おお</rt></ruby>きな<ruby>轟音<rt>ごうおん</rt></ruby>――<ruby>津波<rt>つなみ</rt></ruby>の<ruby>音<rt>おと</rt></ruby>が<ruby>近<rt>ちか</rt></ruby>い。"}
+];
+
+const story5_1 =[
+    {speaker: "ナレーター", text: "{playerName}は<ruby>全力<rt>ぜんりょく</rt></ruby>で<ruby>駆<rt>か</rt></ruby>け<ruby>上<rt>のぼ</rt></ruby>った。", effect: () => { Time += 1; } }
+    
+];
+
+const story5_1_s =[
+    { speaker: "ナレーター", text: "<ruby>避難所<rt>ひなんじょ</rt></ruby>は<ruby>間近<rt>まぢか</rt></ruby>だ。"}
+];
+
+const story5_1_m =[
+    { speaker: "ナレーター", text: "<ruby>転<rt>ころ</rt></ruby>んでしまった。" , effect: () => { Time -= 1; }}
+];
+
+const story5_2 =[
+    {speaker: "ナレーター", text: "{playerName}は<ruby>他<rt>ほか</rt></ruby>の<ruby>避難者<rt>ひなんしゃ</rt></ruby>を<ruby>支<rt>ささ</rt></ruby>えながら<ruby>進<rt>すす</rt></ruby>んだ。" }
+];
+
+const story5_2_s =[
+    { speaker: "ナレーター", text: "<ruby>無事<rt>ぶじ</rt></ruby>に<ruby>進<rt>すす</rt></ruby>めた。" , effect: () => { person = 1; } }
+];
+const story5_2_m =[
+    { speaker: "ナレーター", text: "<ruby>時間<rt>じかん</rt></ruby>がかかってしまった。", effect: () => { Time -= 1; person = 1; }   },
+];
+const story5_3 =[
+    {speaker: "ナレーター", text: "{playerName}は<ruby>別<rt>べつ</rt></ruby>ルートでで<ruby>進<rt>すす</rt></ruby>むことにした。" }
+];
+const story5_3_s =[
+    { speaker: "ナレーター", text: "<ruby>無事<rt>ぶじ</rt></ruby>に<ruby>進<rt>すす</rt></ruby>むことができた。", effect: () => { Time += 2; } }
+];
+
+const story5_3_m =[
+    { speaker: "ナレーター", text: "<ruby>雪崩<rt>なだれ</rt></ruby>に<ruby>巻<rt>ま</rt></ruby>き<ruby>込<rt>こ</rt></ruby>まれた。"}
+];
+
+
 const story6 = [
-  { speaker: "ナレーター", text: "広大な緑に囲まれた広域避難場所・総合公園の防火ゲートが見えた！" },
-  { speaker: "ナレーター", text: "だが背後からは巨大な炎の竜巻が、すべてを焼き尽くさんと迫っている！" },
-  { speaker: "ナレーター", text: "最後の力を振り絞れ！ ゲートの向こうへ跳び込め！" }
+    { speaker:"ナレーター",text:"<ruby>校門<rt>こうもん</rt></ruby>の<ruby>向<rt>む</rt></ruby>こうに<ruby>避難所<rt>ひなんじょ</rt></ruby>の<ruby>明<rt>あ</rt></ruby>かりが<ruby>見<rt>み</rt></ruby>える。"},
+    { speaker: "ナレーター", text: "だが<ruby>背後<rt>はいご</rt></ruby>で「ドォォン……」という<ruby>轟音<rt>ごうおん</rt></ruby>。"},
+    { speaker: "ナレーター", text: "もう、<ruby>津波<rt>つなみ</rt></ruby>が迫っている。"}
 ];
 
-// HAPPY END（生存・全員救助成功）
-const story7_1 = [
-  { speaker: "ナレーター", text: "重厚な防火シャッターが音を立てて閉まり、猛烈な熱気と炎が遮断された。" },
-  { speaker: "ナレーター", text: "公園の広場に倒れ込み、あなたは荒い息を整えながら空を見上げた。" },
-  { speaker: "ナレーター", text: "眼下の都市は炎と煙に包まれているが、ここには確かな「いのち」が残っている。" },
-  { speaker: "ナレーター", text: "「助かったんだ……！」周囲から安堵のすすり泣きが漏れた。" },
-  { speaker: "ナレーター", text: "あなたの迅速で的確な判断が、命を未来へ繋いだのだ。" }
+const story7_1 =[
+    {speaker:"ナレーター", text:"<ruby>校舎<rt>こうしゃ</rt></ruby>の<ruby>屋上<rt>おくじょう</rt></ruby>に<ruby>避難<rt>ひなん</rt></ruby>したあなたは、<ruby>息<rt>いき</rt></ruby>を<ruby>切<rt>き</rt></ruby>らして<ruby>振<rt>ふ</rt></ruby>り<ruby>返<rt>かえ</rt></ruby>る。"},
+    {speaker:"ナレーター",text:"<ruby>町<rt>まち</rt></ruby>が<ruby>波<rt>なみ</rt></ruby>に<ruby>飲<rt>の</rt></ruby>み<ruby>込<rt>こ</rt></ruby>まれていく<ruby>光景<rt>こうけい</rt></ruby>が、<ruby>夕日<rt>ゆうひ</rt></ruby>に<ruby>照<rt>て</rt></ruby>らされていた。"},
+    {speaker:"ナレーター", text:"<ruby>誰<rt>だれ</rt></ruby>かが<ruby>泣<rt>な</rt></ruby>いている。<ruby>誰<rt>だれ</rt></ruby>かが<ruby>祈<rt>いの</rt></ruby>っている。"},
+    {speaker:"ナレーター",text:"それでも、あなたは「<ruby>生<rt>い</rt></ruby>き<ruby>延<rt>の</rt></ruby>びた」。"}
 ];
 
-// BITTER END（救助したものの犠牲や未練が残る結末）
-const story7_2 = [
-  { speaker: "ナレーター", text: "必死の思いで仲間の手を引いて防火ゲートへと飛び込んだ。" },
-  { speaker: "ナレーター", text: "しかし、直後に発生した爆風によって繋いでいた手が弾き飛ばされる！" },
-  { speaker: "ナレーター", text: "シャッターが降りるわずかな隙間から見えたのは、炎の中に消えていく人の影だった。" },
-  { speaker: "ナレーター", text: "「うわあああ！」あなたの叫び声は、吹き荒れる火災旋風の豪音にかき消された。" },
-  { speaker: "ナレーター", text: "生き残ったものの、悲痛な悔恨が深く胸に刻まれることとなった……" }
+const story7_2 =[
+    {speaker:"ナレーター", text:"<ruby>最後<rt>さいご</rt></ruby>に<ruby>仲間<rt>なかま</rt></ruby>を<ruby>背負<rt>せお</rt></ruby>って<ruby>走<rt>はし</rt></ruby>ったあなた。"},
+    {speaker:"ナレーター",text:"<ruby>門<rt>もん</rt></ruby>をくぐる<ruby>瞬間<rt>しゅんかん</rt></ruby>、<ruby>仲間<rt>なかま</rt></ruby>の<ruby>手<rt>て</rt></ruby>が<ruby>離<rt>はな</rt></ruby>れた。"},
+    {speaker:"ナレーター", text:"<ruby>波<rt>なみ</rt></ruby>の<ruby>中<rt>なか</rt></ruby>に<ruby>消<rt>き</rt></ruby>える<ruby>姿<rt>すがた</rt></ruby>を<ruby>見<rt>み</rt></ruby>て、あなたは<ruby>叫<rt>さけ</rt></ruby>ぶ。"},
+    {speaker:"ナレーター", text:"「<ruby>必<rt>かなら</rt></ruby>ず<ruby>戻<rt>もど</rt></ruby>るから――！」"},
+    {speaker:"ナレーター",text:"その<ruby>声<rt>こえ</rt></ruby>は、<ruby>波音<rt>なみおと</rt></ruby>にかき<ruby>消<rt>け</rt></ruby>された。"}
 ];
 
-// BAD END（時間切れ・逃げ遅れ）
-const story7_3 = [
-  { speaker: "ナレーター", text: "圧倒的な熱風と巨大な炎の竜巻が、逃げ惑う人々もろとも路地を呑み込んでいく。" },
-  { speaker: "ナレーター", text: "視界全体が赤く染まり、やがてすべてが真っ白な光の中に消えていった……" },
-  { speaker: "ナレーター", text: "――数ヶ月後。復興の進む公園の入口に、新たな慰霊の銘板が設置された。" },
-  { speaker: "ナレーター", text: "そこには、震災の惨禍とあなたの勇気ある行動が静かに刻まれていた。" }
+const story7_3 =[
+    {speaker:"ナレーター", text:"<ruby>濁流<rt>だくりゅう</rt></ruby>が<ruby>町<rt>まち</rt></ruby>を<ruby>飲<rt>の</rt></ruby>み<ruby>込<rt>こ</rt></ruby>み、すべてが<ruby>白<rt>しろ</rt></ruby>く<ruby>消<rt>き</rt></ruby>えた。"},
+    {speaker:"ナレーター",text:"――しかし、<ruby>翌年<rt>よくねん</rt></ruby>。<ruby>墓石<rt>ぼせき</rt></ruby>に、<ruby>刻<rt>きざ</rt></ruby>まれていた。"},
+    {speaker:"ナレーター", text:"<ruby>誰<rt>だれ</rt></ruby>かが、あなたを<ruby>思<rt>おも</rt></ruby>い<ruby>出<rt>だ</rt></ruby>していた。"}
 ];
