@@ -3,125 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026TRPG</title>
+    <title>2026TRPG - 防災サバイバル</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-   <div id="status-screen" class="status-screen" style="display: block;">
-  <!-- トップへ戻るボタン -->
-  <a href="../index.html" class="back-to-top">← トップへ戻る</a>
+    <!-- ステータス作成画面 -->
+    <div id="status-screen" class="status-screen" style="display: block;">
+        <a href="../index.html" class="back-to-top">← トップへ戻る</a>
+        <img class="logo" src="../common/img/logo2.jpg" alt="ロゴ">
+        <h1>初期設定</h1>
 
-  <img class="logo" src="../common/img/logo2.jpg">
-  <h1>初期設定</h1>
+        <label for="playerName">プレイヤー名:</label>
+        <input type="text" id="playerName" maxlength="10" placeholder="入力欄（最大10文字）">
 
-  <label for="playerName">プレイヤー名:</label>
-  <input type="text" id="playerName" maxlength="10" placeholder="入力欄（最大10文字）">
-
-  <div class="ruby-toggle">
-    <input type="checkbox" id="ruby-toggle" checked>ふりがなを表示
-  </div>
-
-  <div class="stasetting">
-    <h2>ステータス設定</h2>
-    <p id="stapoint"><button id="sta">一括でダイスを振る</button><span class="lim"><span id="Total">00</span>/15</span></p>
-    <div class="syokista">
-      <p>体力 ：<span id="HP"></span><button id="hp_set" class="staset">🎲</button></p>
-      <p>判断力：<span id="HANDAN"></span><button id="handan_set" class="staset">🎲</button></p>
-      <p>幸運値：<span id="LUCK"> </span><button id="luck_set" class="staset">🎲</button></p>
-      <p>素早さ：<span id="SPEAD"> </span><button id="spead_set" class="staset">🎲</button></p>
-    </div>
-  </div>
-
-  <!-- 開始ボタンを枠の中に配置 -->
-  <button id="start" class="start">ゲームを開始する</button>
-</div>
-
-  <!-- ステータス確認画面 -->
-<div id="sta-screen" style="display: none;">
-  <img class="logo" src="../common/img/logo2.jpg">
-  <div class="sta-top-actions">
-    <a href="../index.html" class="back-to-top">← ゲームをやめてトップへ戻る</a>
-    <button id="StatusBuck" class="StatusBuck">ゲームに戻る</button>
-  </div>
-  <h1>ステータス</h1>
-  <p>Name:<span id="playerName_game"></span></p>
-  <p>体力:<span id="HP_game"></span></p>
-  <p>判断力:<span id="HANDAN_game"></span></p>
-  <p>幸運値：<span id="LUCK_game"></span></p>
-  <p>素早さ：<span id="SPEAD_game"></span></p>
-</div>
-
-  <div id="cmd-screen" style="display: none;" class="cmd-screen">
-    <img class="logo" src="../common/img/logo2.jpg">
-    <div class="cmdtx">コマンドを<ruby>選択<rt>せんたく</rt></ruby>してください</div>
-    <div id="cmd">
-      <button id="cmd1" class="cmd1"><span id="cmdtext1"></span></button>
-      <button id="cmd2" class="cmd2"><span id="cmdtext2"></span></button>
-      <button id="cmd3" class="cmd3"><span id="cmdtext3"></span></button>
-    </div>
-  </div>
-
-  <div id="count" class="count" style="display: none; background-color: black; color: white; width: 100vw; height: 100vh;">
-    <button class="next" id="nextco">次へ</button>
-    <div class="countpa"></div><div class="counttx"><ruby>津波到達<rt>つなみとうたつ</rt></ruby>まで<ruby>残<rt>のこ</rt></ruby>り<span id="time"></span>分<br><ruby>場所<rt>ばしょ</rt></ruby>：<span id="place"></span></div>
-  </div>
-
-  <div id="game-screen" class="gamesc" style="display: none;">
-    <img class="logo" src="../common/img/logo2.jpg">
-    <button id="Status" class="Status">ステータス確認</button>
-    <button class="next" id="next">次へ</button>
-    <div class="sptxbox">
-      <div id="spebox">
-        <div id="speakerbox">
-          <p id="speaker">xxxx</p>
+        <div class="ruby-toggle">
+            <input type="checkbox" id="ruby-toggle" checked>ふりがなを表示
         </div>
-      </div>
-      <div id="messbox">
-        <div id="textbox">
-          <p id="text">xxxx</p>
+
+        <div class="stasetting">
+            <h2>ステータス設定</h2>
+            <p id="stapoint">
+                <button id="sta">一括でダイスを振る</button>
+                <span class="lim"><span id="Total">00</span>/15</span>
+            </p>
+            <div class="syokista">
+                <p>体力 ：<span id="HP"></span><button id="hp_set" class="staset">🎲</button></p>
+                <p>判断力：<span id="HANDAN"></span><button id="handan_set" class="staset">🎲</button></p>
+                <p>幸運値：<span id="LUCK"></span><button id="luck_set" class="staset">🎲</button></p>
+                <p>素早さ：<span id="SPEAD"></span><button id="spead_set" class="staset">🎲</button></p>
+            </div>
         </div>
-      </div>
+
+        <button id="start" class="start">ゲームを開始する</button>
     </div>
-  </div>
 
-  <div id="dice-screen" style="display: none;">
-    <img class="logo" src="../common/img/logo2.jpg">
-      <div class="dicetx">ダイスを<ruby>振<rt>ふ</rt></ruby>ってください。</div>
-      <button id="dicescreen" class="dicescreen">ダイスを<ruby>振<rt>ふ</rt></ruby>る</button>
-  </div>
-
-  <div id="gameover" class="gameover" style="display: none;">
-    <img class="logo" src="../common/img/logo2.jpg">
-      <div class="gameovertx">BAD END...</div>
-  </div>
-
-  <div id="Trueend" class="gameover" style="display: none;">
-    <img class="logo" src="../common/img/logo2.jpg">
-      <div class="gameovertx">BITTER END...</div>
-  </div>
-
-  <div id="Happyend" class="gameover" style="display: none;">
-    <img class="logo" src="../common/img/logo2.jpg">
-      <div class="gameovertx">HAPPY END</div>
-  </div>
-
-  <!-- ゲーム終了時の画面 -->
-  <div id="end" style="display:none">
-        <div id="ec3" class="ec3">
-            <!-- <a href="https://docs.google.com/presentation/d/1qwAchm12Bnkz1ouAh-PxaJwLs6qKSlwM/edit?usp=drive_link&ouid=103859938448823707397&rtpof=true&sd=true">ec3 活動紹介ページへ！</a> -->
+    <!-- ステータス確認オーバーレイ -->
+    <div id="sta-screen" style="display: none;">
+        <img class="logo" src="../common/img/logo2.jpg" alt="ロゴ">
+        <div class="sta-top-actions">
+            <a href="../index.html" class="back-to-top">← ゲームをやめてトップへ戻る</a>
+            <button id="StatusBuck" class="StatusBuck">ゲームに戻る</button>
         </div>
+        <h1>ステータス</h1>
+        <p>Name:<span id="playerName_game"></span></p>
+        <p>体力:<span id="HP_game"></span></p>
+        <p>判断力:<span id="HANDAN_game"></span></p>
+        <p>幸運値：<span id="LUCK_game"></span></p>
+        <p>素早さ：<span id="SPEAD_game"></span></p>
+    </div>
+
+    <!-- コマンド画面 -->
+    <div id="cmd-screen" style="display: none;" class="cmd-screen">
+        <img class="logo" src="../common/img/logo2.jpg" alt="ロゴ">
+        <div class="cmdtx">コマンドを<ruby>選択<rt>せんたく</rt></ruby>してください</div>
+        <div id="cmd">
+            <button id="cmd1" class="cmd1"><span id="cmdtext1"></span></button>
+            <button id="cmd2" class="cmd2"><span id="cmdtext2"></span></button>
+            <button id="cmd3" class="cmd3"><span id="cmdtext3"></span></button>
+        </div>
+    </div>
+
+    <!-- カウントダウン黒画面 -->
+    <div id="count" class="count" style="display: none;">
+        <button class="next" id="nextco">次へ</button>
+        <div class="counttx">
+            <ruby>津波到達<rt>つなみとうたつ</rt></ruby>まで<ruby>残<rt>のこ</rt></ruby>り<span id="time"></span>分<br>
+            <ruby>場所<rt>ばしょ</rt></ruby>：<span id="place"></span>
+        </div>
+    </div>
+
+    <!-- ゲーム進行メッセージ画面 -->
+    <div id="game-screen" class="gamesc" style="display: none;">
+        <img class="logo" src="../common/img/logo2.jpg" alt="ロゴ">
+        <button id="Status" class="Status">ステータス確認</button>
+        <button class="next" id="next">次へ</button>
+        <div class="sptxbox">
+            <div id="spebox">
+                <p id="speaker">ナレーター</p>
+            </div>
+            <div id="messbox">
+                <div id="textbox">
+                    <p id="text">本文</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ダイス判定画面 -->
+    <div id="dice-screen" style="display: none;">
+        <img class="logo" src="../common/img/logo2.jpg" alt="ロゴ">
+        <div class="dicetx">ダイスを<ruby>振<rt>ふ</rt></ruby>ってください。</div>
+        <button id="dicescreen" class="dicescreen">ダイスを<ruby>振<rt>ふ</rt></ruby>る</button>
+    </div>
+
+    <!-- 各種エンディング画面 -->
+    <div id="gameover" class="gameover" style="display: none;">
+        <img class="logo" src="../common/img/logo2.jpg" alt="ロゴ">
+        <div class="gameovertx">BAD END...</div>
+    </div>
+
+    <div id="Trueend" class="gameover" style="display: none;">
+        <img class="logo" src="../common/img/logo2.jpg" alt="ロゴ">
+        <div class="gameovertx">BITTER END...</div>
+    </div>
+
+    <div id="Happyend" class="gameover" style="display: none;">
+        <img class="logo" src="../common/img/logo2.jpg" alt="ロゴ">
+        <div class="gameovertx">HAPPY END</div>
+    </div>
+
+    <!-- ゲーム終了時操作アクション -->
+    <div id="end" style="display:none">
         <div class="end-actions">
             <button id="reset">はじめから</button>
-            <!-- トップへ戻るボタン（ゲーム終了画面用） -->
             <a href="../index.html" class="top-btn">トップに戻る</a>
         </div>
-  </div>
+    </div>
 
-  <script src="../common/define.js"></script>
-  <script src="story-data.js"></script>
-  <!-- <script src="../common/status.js"></script> -->
-  <script src="../common/setting.js"></script>
-  <script src="../common/script.js"></script>
+    <!-- 分離したJSファイルの順番に従って読込み -->
+    <script src="js/state.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/story-data.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
