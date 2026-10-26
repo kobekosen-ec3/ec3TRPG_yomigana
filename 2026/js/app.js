@@ -103,11 +103,20 @@ document.addEventListener("DOMContentLoaded", () => {
         UI.showScreen("status");
     });
 
-    // Enterキー
+    // Enterキーの制御
     document.addEventListener("keydown", (event) => {
         if (event.key !== "Enter") return;
-        if (UI.screens.status.style.display === "block") return;
 
+        // 初期設定画面またはステータス確認画面のときは無効化
+        if (UI.screens.status.style.display === "block" || UI.screens.staOverlay.style.display === "block") return;
+
+        // ★ダイス画面が表示されている時は「ダイスを振る/次へ」ボタンを押す
+        if (UI.screens.dice.style.display === "flex" || UI.screens.dice.style.display === "block") {
+            document.getElementById("dicescreen").click();
+            return;
+        }
+
+        // 黒画面表示中
         if (GameState.pendingCount === 1) {
             document.getElementById("nextco").click();
         } else {
@@ -222,22 +231,53 @@ document.addEventListener("DOMContentLoaded", () => {
     function showDiceScreen(statName, capSuccess, capFail, targetVal) {
         UI.showScreen("dice");
 
-        GameState.pendingDice = { statName, capSuccess, capFail, targetVal };
-    }
+        GameState.pendingDice = {
+            
+            statName,
+            capSuccess,
+            capFail,
+            targetVal,
+            diceValue: null
+        };
 
+        const diceButton = document.getElementById("dicescreen");
+        const diceResult = document.getElementById("dice-result");
+
+        diceButton.innerHTML = "ダイスを<ruby>振<rt>ふ</rt></ruby>る";
+        diceResult.innerHTML = "";
+    }
     /**
-     * ダイス判定（能力値 + ダイスの目 >= targetVal で成功）
+     * ダイス判定
+     * 能力値 + ダイスの目 が targetVal より大きければ成功
      */
     function handleDiceRoll() {
         if (!GameState.pendingDice) return;
 
-        const diceValue = Math.floor(Math.random() * 6 + 1);
-        const statValue = (GameState[GameState.pendingDice.statName] || 0) + diceValue;
+        const diceButton = document.getElementById("dicescreen");
+        const diceResult = document.getElementById("dice-result");
 
-        // 目標値「以上」で成功判定
-        GameState.chapter = statValue >= GameState.pendingDice.targetVal
-            ? GameState.pendingDice.capSuccess
-            : GameState.pendingDice.capFail;
+        // 1回目：ダイスの目を表示する
+        if (GameState.pendingDice.diceValue === null) {
+            const diceValue = Math.floor(Math.random() * 6 + 1);
+            GameState.pendingDice.diceValue = diceValue;
+
+            diceResult.innerHTML =
+                `<strong>${diceValue}</strong>が<ruby>出<rt>で</rt></ruby>た。`;
+
+            diceButton.innerHTML = "<ruby>次<rt>つぎ</rt></ruby>へ";
+            return;
+        }
+
+        // 2回目：能力値と合わせて判定する
+        const diceValue = GameState.pendingDice.diceValue;
+
+        const statValue =
+            (GameState[GameState.pendingDice.statName] || 0) + diceValue;
+
+        GameState.chapter =
+            statValue >= GameState.pendingDice.targetVal
+                ? GameState.pendingDice.capSuccess
+                : GameState.pendingDice.capFail;
 
         GameState.storyIndex = 0;
         GameState.pendingDice = null;
