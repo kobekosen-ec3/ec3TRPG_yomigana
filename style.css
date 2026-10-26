@@ -175,8 +175,16 @@ h2 {
   text-align: center;
 }
 
-.gogame h2 {
+.gogame h2{
   text-align: left;
+}
+
+.gogame span{
+  text-align: left;
+  padding-left: 10px;
+  color: #4a5568;
+  font-weight: 400;
+  font-size: 15px;
 }
 
 .gamepngtx {
