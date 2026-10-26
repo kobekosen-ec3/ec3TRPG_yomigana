@@ -26,7 +26,7 @@ const story1 = createStory(
     },
     {
         speaker: "ナレーター",
-        text: `体育館では、部活動展示、企業展示、研究紹介、体験コーナーなどが開かれていた。`
+        text: `体育館では、部活動展示と企業展示が開かれていた。`
     },
     {
         speaker: "ナレーター",
@@ -113,7 +113,9 @@ const story2_1_m = createStory(
     {
         speaker: "ナレーター",
         text: `床に散らばった資料に足を取られ、転びそうになる。`,
-        effect: () => { GameState.time -= 1; }
+        effect: () => {
+            GameState.time -= 1;
+        }
     },
     {
         speaker: "ナレーター",
@@ -172,7 +174,7 @@ const story2_3_s = createStory(
     },
     {
         speaker: "ナレーター",
-        text: `あなたは比較的安全に体育館の外へ出ることができた。`
+        text: `あなたは比較的安全に、体育館横の通路を進むことができた。`
     }
 );
 
@@ -180,7 +182,9 @@ const story2_3_m = createStory(
     {
         speaker: "ナレーター",
         text: `通路の先には、避難する人が集まり始めていた。`,
-        effect: () => { GameState.time -= 1; }
+        effect: () => {
+            GameState.time -= 1;
+        }
     },
     {
         speaker: "ナレーター",
@@ -193,14 +197,6 @@ const story2_3_m = createStory(
 const story3 = createStory(
     {
         speaker: "ナレーター",
-        text: `非常口へ向かう途中、保護者とはぐれた子どもが泣いている。`
-    },
-    {
-        speaker: "子ども",
-        text: `「家族がいない……」`
-    },
-    {
-        speaker: "ナレーター",
         text: `少し離れた場所では、来場者の1人が地震の揺れで転倒し、足をくじいていた。`
     },
     {
@@ -209,89 +205,25 @@ const story3 = createStory(
     },
     {
         speaker: "ナレーター",
-        text: `煙は少しずつ体育館内へ広がっている。`
+        text: `煙は少しずつ体育館内へ広がっている。まず、あなたはどうする？`
     }
 );
 
 const story3_1 = createStory(
     {
         speaker: "ナレーター",
-        text: `{playerName}は、子どもと一緒に非常口へ向かうことにした。`
+        text: `{playerName}は、けが人を支えて非常口へ向かうことにした。`
     },
     {
         speaker: "{playerName}",
-        text: `「一緒に外へ行こう。家族もきっと外に避難しているよ」`
+        text: `「一人では危ないです。周りの人と一緒に、外へ出ましょう」`
     }
 );
 
 const story3_1_s = createStory(
     {
         speaker: "ナレーター",
-        text: `子どもの手を引き、人の流れを避けながら非常口へ進む。`
-    },
-    {
-        speaker: "ナレーター",
-        text: `子どもは不安そうにしながらも、あなたについてくる。`
-    }
-);
-
-const story3_1_m = createStory(
-    {
-        speaker: "ナレーター",
-        text: `子どもは恐怖で足が止まり、人の流れも乱れている。`,
-        effect: () => { GameState.time -= 1; }
-    },
-    {
-        speaker: "ナレーター",
-        text: `あなたは落ち着かせながら進むが、避難が遅れてしまう。`
-    }
-);
-
-const story3_2 = createStory(
-    {
-        speaker: "ナレーター",
-        text: `{playerName}は、子どもの家族を探すことにした。`
-    }
-);
-
-const story3_2_s = createStory(
-    {
-        speaker: "ナレーター",
-        text: `近くで子どもの名前を呼ぶ声が聞こえる。`
-    },
-    {
-        speaker: "ナレーター",
-        text: `あなたは子どもの家族を見つけ、避難するよう伝えることができた。`
-    }
-);
-
-const story3_2_m = createStory(
-    {
-        speaker: "ナレーター",
-        text: `家族を探しているうちに、人の流れと煙が近づいてくる。`,
-        effect: () => { GameState.time -= 1; }
-    },
-    {
-        speaker: "ナレーター",
-        text: `あなたは子どもと共に、急いで非常口へ戻ることになる。`
-    }
-);
-
-const story3_3 = createStory(
-    {
-        speaker: "ナレーター",
-        text: `{playerName}は、周囲に協力を求めてけが人を支えることにした。`
-    },
-    {
-        speaker: "{playerName}",
-        text: `「この人が足をくじいています。2人ほど、支えるのを手伝ってください！」`
-    }
-);
-
-const story3_3_s = createStory(
-    {
-        speaker: "ナレーター",
-        text: `近くにいた人たちが協力してくれる。`,
+        text: `近くにいた人が手を貸してくれ、けが人の左右を支えながら進む。`,
         effect: () => {
             GameState.rescuedPerson = 1;
             GameState.time -= 1;
@@ -299,19 +231,94 @@ const story3_3_s = createStory(
     },
     {
         speaker: "ナレーター",
-        text: `けが人の左右を支えながら、全員で非常口へ向かう。`
+        text: `けが人は痛みに耐えながらも、あなたたちと共に非常口へ向かう。`
+    }
+);
+
+const story3_1_m = createStory(
+    {
+        speaker: "ナレーター",
+        text: `人の流れが乱れ、すぐに協力者を見つけられない。`,
+        effect: () => {
+            GameState.rescuedPerson = 1;
+            GameState.time -= 2;
+        }
+    },
+    {
+        speaker: "ナレーター",
+        text: `あなたはけが人を支えながら進むが、避難が遅れてしまう。`
+    }
+);
+
+const story3_2 = createStory(
+    {
+        speaker: "ナレーター",
+        text: `{playerName}は、自分だけでけが人を支えるのは危険だと判断し、周囲へ助けを求めてから避難を優先することにした。`
+    }
+);
+
+const story3_2_s = createStory(
+    {
+        speaker: "ナレーター",
+        text: `あなたは近くの人へ、けが人がいることを伝える。`
+    },
+    {
+        speaker: "ナレーター",
+        text: `煙から離れ、比較的早く非常口の近くまで進むことができた。`
+    }
+);
+
+const story3_2_m = createStory(
+    {
+        speaker: "ナレーター",
+        text: `人の流れに押され、思うように進めない。`,
+        effect: () => {
+            GameState.time -= 1;
+        }
+    },
+    {
+        speaker: "ナレーター",
+        text: `あなたは周囲に注意しながら、非常口へ向かう。`
+    }
+);
+
+const story3_3 = createStory(
+    {
+        speaker: "ナレーター",
+        text: `{playerName}は、周囲に協力を求めることにした。`
+    },
+    {
+        speaker: "{playerName}",
+        text: `「足をくじいた人がいます。支えるのを手伝ってください！」`
+    }
+);
+
+const story3_3_s = createStory(
+    {
+        speaker: "ナレーター",
+        text: `近くにいた人たちが協力してくれ、けが人を支えながら非常口へ向かう。`,
+        effect: () => {
+            GameState.rescuedPerson = 1;
+            GameState.time -= 1;
+        }
+    },
+    {
+        speaker: "ナレーター",
+        text: `あなたは周囲と役割を分け、安全な避難の流れを作ることができた。`
     }
 );
 
 const story3_3_m = createStory(
     {
         speaker: "ナレーター",
-        text: `周囲の人も混乱しており、すぐには協力者が見つからない。`,
-        effect: () => { GameState.time -= 1; }
+        text: `周囲も混乱しており、すぐには協力者が見つからない。`,
+        effect: () => {
+            GameState.time -= 1;
+        }
     },
     {
         speaker: "ナレーター",
-        text: `あなたはけが人を壁際の安全な位置へ移動させ、避難の流れが落ち着くのを待つ。`
+        text: `あなたはけが人に周囲へ助けを求めるよう伝え、自分も避難を続ける。`
     }
 );
 
@@ -320,7 +327,7 @@ const story3_3_m = createStory(
 const story4 = createStory(
     {
         speaker: "ナレーター",
-        text: `体育館の外へ出ると、冷たい秋の空気が頬を打つ。`
+        text: `非常口を抜けると、冷たい秋の空気が頬を打つ。`
     },
     {
         speaker: "ナレーター",
@@ -354,7 +361,9 @@ const story4_1_m = createStory(
     {
         speaker: "ナレーター",
         text: `前を歩いていた人が立ち止まり、避難する人の列が乱れる。`,
-        effect: () => { GameState.time -= 1; }
+        effect: () => {
+            GameState.time -= 1;
+        }
     },
     {
         speaker: "ナレーター",
@@ -365,7 +374,7 @@ const story4_1_m = createStory(
 const story4_2 = createStory(
     {
         speaker: "ナレーター",
-        text: `{playerName}は、子どもやけが人を支えながら進むことにした。`
+        text: `{playerName}は、周囲の人と声をかけ合いながら進むことにした。`
     }
 );
 
@@ -374,7 +383,6 @@ const story4_2_s = createStory(
         speaker: "ナレーター",
         text: `周囲の人が役割を分け、無理のない速さで運動場へ進む。`,
         effect: () => {
-            GameState.rescuedPerson = 1;
             GameState.time -= 1;
         }
     },
@@ -387,12 +395,14 @@ const story4_2_s = createStory(
 const story4_2_m = createStory(
     {
         speaker: "ナレーター",
-        text: `支えながら進むため、思ったより時間がかかる。`,
-        effect: () => { GameState.time -= 2; }
+        text: `周囲の人と声をかけ合いながら進むため、思ったより時間がかかる。`,
+        effect: () => {
+            GameState.time -= 2;
+        }
     },
     {
         speaker: "ナレーター",
-        text: `それでも、けが人や子どもを置いていくことなく進み続ける。`
+        text: `それでも、周囲の安全を確かめながら進み続ける。`
     }
 );
 
@@ -411,7 +421,9 @@ const story4_3_s = createStory(
     {
         speaker: "ナレーター",
         text: `あなたは混雑を避け、早く進むことができた。`,
-        effect: () => { GameState.time += 1; }
+        effect: () => {
+            GameState.time += 1;
+        }
     }
 );
 
@@ -419,7 +431,9 @@ const story4_3_m = createStory(
     {
         speaker: "ナレーター",
         text: `通路の先には、落ちた案内板や荷物が散らばっている。`,
-        effect: () => { GameState.time -= 1; }
+        effect: () => {
+            GameState.time -= 1;
+        }
     },
     {
         speaker: "ナレーター",
@@ -478,7 +492,9 @@ const story5_1_m = createStory(
     {
         speaker: "ナレーター",
         text: `疲れと混乱で足がもつれ、運動場へ着くまでに時間がかかる。`,
-        effect: () => { GameState.time -= 1; }
+        effect: () => {
+            GameState.time -= 1;
+        }
     }
 );
 
@@ -504,7 +520,7 @@ const story5_2_s = createStory(
     },
     {
         speaker: "ナレーター",
-        text: `子どもは家族と再会し、けが人も支えられながら運動場へ到着する。`
+        text: `周囲の人は互いの状況を確認しながら、運動場へ到着する。`
     }
 );
 
@@ -512,7 +528,9 @@ const story5_2_m = createStory(
     {
         speaker: "ナレーター",
         text: `情報を整理する間に、避難完了までの時間が迫る。`,
-        effect: () => { GameState.time -= 2; }
+        effect: () => {
+            GameState.time -= 2;
+        }
     },
     {
         speaker: "ナレーター",
@@ -535,7 +553,9 @@ const story5_3_s = createStory(
     {
         speaker: "ナレーター",
         text: `あなたは体育館へ近づかず、運動場へ向かう。`,
-        effect: () => { GameState.time -= 1; }
+        effect: () => {
+            GameState.time -= 1;
+        }
     }
 );
 
@@ -560,10 +580,6 @@ const story6 = createStory(
     {
         speaker: "ナレーター",
         text: `建物には近づかず、周囲の人と人数や状況を確認する声が聞こえる。`
-    },
-    {
-        speaker: "ナレーター",
-        text: `あなたは、今日の選択を振り返る。`
     }
 );
 
@@ -585,7 +601,7 @@ const story7_1 = createStory(
 const story7_2 = createStory(
     {
         speaker: "ナレーター",
-        text: `{playerName}は、子どもやけが人を見捨てず、周囲の人と協力して避難した。`
+        text: `{playerName}は、周囲の人を見捨てず、協力して避難した。`
     },
     {
         speaker: "ナレーター",
@@ -598,6 +614,10 @@ const story7_2 = createStory(
 );
 
 const story7_3 = createStory(
+    {
+        speaker: "ナレーター",
+        text: `視界が白くにじみ、周囲の声が遠ざかっていく。`
+    },
     {
         speaker: "ナレーター",
         text: `{playerName}は避難できず、命を落とした。`

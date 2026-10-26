@@ -1,12 +1,7 @@
 /**
- * ゲームエンジン・イベント結合モジュール
+ * ゲームエンジン・イベント結合モジュール（ストーリー矛盾・判定修復版）
  */
 document.addEventListener("DOMContentLoaded", () => {
-    // 黒画面の「津波到達まで残り」を「避難完了まで残り」へ変更
-    const countText = document.querySelector(".counttx");
-    if (countText?.firstChild?.nodeType === Node.TEXT_NODE) {
-        countText.firstChild.nodeValue = "避難完了まで残り";
-    }
 
     // 一括ダイス
     document.getElementById("sta").addEventListener("click", () => {
@@ -38,19 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // ゲーム開始
     document.getElementById("start").addEventListener("click", () => {
         const name = UI.elements.playerNameInput.value.trim();
-        const total =
-            GameState.hp +
-            GameState.speed +
-            GameState.luck +
-            GameState.handan;
+        const total = GameState.hp + GameState.speed + GameState.luck + GameState.handan;
 
-        if (
-            !name ||
-            GameState.hp === 0 ||
-            GameState.speed === 0 ||
-            GameState.luck === 0 ||
-            GameState.handan === 0
-        ) {
+        if (!name || GameState.hp === 0 || GameState.speed === 0 || GameState.luck === 0 || GameState.handan === 0) {
             alert("未入力の項目があります！");
             return;
         }
@@ -154,8 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         UI.showScreen("count");
 
-        UI.elements.time.textContent =
-            GameState.time > 0 ? GameState.time : "0";
+        UI.elements.time.textContent = GameState.time > 0 ? GameState.time : "0";
 
         UI.elements.place.innerHTML = GameState.rubyEnabled
             ? placeText
@@ -163,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
-     * 黒画面の次へを押した際の分岐
+     * 黒画面の次へを押した際の分岐（修正版）
      */
     function handleCountBack() {
         const currentChapter = GameState.chapter;
@@ -172,69 +156,28 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentChapter === story1) {
             nextChapter = story2;
         }
-
-        else if (
-            [
-                story2_1_m,
-                story2_1_s,
-                story2_2_m,
-                story2_2_s,
-                story2_3_m,
-                story2_3_s
-            ].includes(currentChapter)
-        ) {
+        else if ([story2_1_m, story2_1_s, story2_2_m, story2_2_s, story2_3_m, story2_3_s].includes(currentChapter)) {
             nextChapter = story3;
         }
-
-        else if (
-            [
-                story3_1_m,
-                story3_1_s,
-                story3_2_m,
-                story3_2_s,
-                story3_3_m,
-                story3_3_s
-            ].includes(currentChapter)
-        ) {
+        else if ([story3_1_m, story3_1_s, story3_2_m, story3_2_s, story3_3_m, story3_3_s].includes(currentChapter)) {
             nextChapter = story4;
         }
-
-        else if (
-            [
-                story4_1_m,
-                story4_1_s,
-                story4_2_m,
-                story4_2_s,
-                story4_3_m,
-                story4_3_s
-            ].includes(currentChapter)
-        ) {
+        else if ([story4_1_m, story4_1_s, story4_2_m, story4_2_s, story4_3_m, story4_3_s].includes(currentChapter)) {
             nextChapter = story5;
         }
-
-        else if (currentChapter === story5_3_m) {
-            nextChapter = story7_3;
-        }
-
-        else if (
-            [
-                story5_1_s,
-                story5_1_m,
-                story5_2_s,
-                story5_2_m,
-                story5_3_s
-            ].includes(currentChapter)
-        ) {
+        else if ([story5_1_s, story5_1_m, story5_2_s, story5_2_m, story5_3_s, story5_3_m].includes(currentChapter)) {
             nextChapter = story6;
         }
-
         else if (currentChapter === story6) {
-            if (GameState.time > 0) {
-                nextChapter = story7_1;
-            } else if (GameState.rescuedPerson === 1) {
-                nextChapter = story7_2;
+            // エンディング判定分岐（優先順位の調整）
+            if (GameState.time <= 0) {
+                if (GameState.rescuedPerson === 1) {
+                    nextChapter = story7_2; // ビターエンド（時間切れだが救助達成）
+                } else {
+                    nextChapter = story7_3; // バッドエンド（時間切れ＆逃げ遅れ）
+                }
             } else {
-                nextChapter = story7_3;
+                nextChapter = story7_1;     // ハッピーエンド（時間内避難成功）
             }
         }
 
@@ -252,15 +195,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function showCmdScreen(cap1, cap2, cap3, text1, text2, text3) {
         UI.showScreen("cmd");
 
-        UI.elements.cmd1.innerHTML = text1;
-        UI.elements.cmd2.innerHTML = text2;
-        UI.elements.cmd3.innerHTML = text3;
+        UI.elements.cmd1.innerHTML = GameState.rubyEnabled ? UI.addRuby(text1) : text1;
+        UI.elements.cmd2.innerHTML = GameState.rubyEnabled ? UI.addRuby(text2) : text2;
+        UI.elements.cmd3.innerHTML = GameState.rubyEnabled ? UI.addRuby(text3) : text3;
 
-        GameState.pendingCmd = {
-            cap1,
-            cap2,
-            cap3
-        };
+        GameState.pendingCmd = { cap1, cap2, cap3 };
     }
 
     /**
@@ -283,29 +222,22 @@ document.addEventListener("DOMContentLoaded", () => {
     function showDiceScreen(statName, capSuccess, capFail, targetVal) {
         UI.showScreen("dice");
 
-        GameState.pendingDice = {
-            statName,
-            capSuccess,
-            capFail,
-            targetVal
-        };
+        GameState.pendingDice = { statName, capSuccess, capFail, targetVal };
     }
 
     /**
-     * ダイス判定
-     * 能力値 + ダイスの目 が targetVal より大きければ成功
+     * ダイス判定（能力値 + ダイスの目 >= targetVal で成功）
      */
     function handleDiceRoll() {
         if (!GameState.pendingDice) return;
 
         const diceValue = Math.floor(Math.random() * 6 + 1);
-        const statValue =
-            (GameState[GameState.pendingDice.statName] || 0) + diceValue;
+        const statValue = (GameState[GameState.pendingDice.statName] || 0) + diceValue;
 
-        GameState.chapter =
-            statValue > GameState.pendingDice.targetVal
-                ? GameState.pendingDice.capSuccess
-                : GameState.pendingDice.capFail;
+        // 目標値「以上」で成功判定
+        GameState.chapter = statValue >= GameState.pendingDice.targetVal
+            ? GameState.pendingDice.capSuccess
+            : GameState.pendingDice.capFail;
 
         GameState.storyIndex = 0;
         GameState.pendingDice = null;
@@ -322,10 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 第1章終了
         if (currentChapter === story1) {
-            showCountScreen(
-                0,
-                "<ruby>体育館<rt>たいいくかん</rt></ruby>・<ruby>展示会場<rt>てんじかいじょう</rt></ruby>"
-            );
+            showCountScreen(0, "<ruby>体育館<rt>たいいくかん</rt></ruby>・<ruby>展示会場<rt>てんじかいじょう</rt></ruby>");
         }
 
         // 第2章：火災発生
@@ -339,73 +268,41 @@ document.addEventListener("DOMContentLoaded", () => {
                 "体育館横の通路から運動場へ向かう"
             );
         }
-
         else if (currentChapter === story2_1) {
             showDiceScreen("hp", story2_1_s, story2_1_m, 5);
         }
-
         else if (currentChapter === story2_2) {
             showDiceScreen("handan", story2_2_s, story2_2_m, 5);
         }
-
         else if (currentChapter === story2_3) {
             showDiceScreen("luck", story2_3_s, story2_3_m, 6);
         }
-
-        else if (
-            [
-                story2_1_m,
-                story2_1_s,
-                story2_2_m,
-                story2_2_s,
-                story2_3_m,
-                story2_3_s
-            ].includes(currentChapter)
-        ) {
-            showCountScreen(
-                2,
-                "<ruby>体育館後方<rt>たいいくかんこうほう</rt></ruby>・<ruby>非常口付近<rt>ひじょうぐちふきん</rt></ruby>"
-            );
+        else if ([story2_1_m, story2_1_s, story2_2_m, story2_2_s, story2_3_m, story2_3_s].includes(currentChapter)) {
+            showCountScreen(2, "<ruby>体育館後方<rt>たいいくかんこうほう</rt></ruby>・<ruby>非常口付近<rt>ひじょうぐちふきん</rt></ruby>");
         }
 
-        // 第3章：子ども・けが人
+        // 第3章：助けを求める声（修正：選択肢3の矛盾解消）
         else if (currentChapter === story3) {
             showCmdScreen(
                 story3_1,
                 story3_2,
                 story3_3,
-                "子どもと一緒に非常口へ向かう",
-                "子どもの家族を探す",
-                "周囲に協力を求め、けが人を支える"
+                "けが人を支え、非常口へ向かう",
+                "けが人を助けず、避難を優先する",
+                "周囲に大声で協力を呼びかける"
             );
         }
-
         else if (currentChapter === story3_1) {
-            showDiceScreen("hp", story3_1_s, story3_1_m, 7);
+            showDiceScreen("handan", story3_1_s, story3_1_m, 7);
         }
-
         else if (currentChapter === story3_2) {
-            showDiceScreen("luck", story3_2_s, story3_2_m, 8);
+            showDiceScreen("speed", story3_2_s, story3_2_m, 7);
         }
-
         else if (currentChapter === story3_3) {
-            showDiceScreen("handan", story3_3_s, story3_3_m, 7);
+            showDiceScreen("hp", story3_3_s, story3_3_m, 7);
         }
-
-        else if (
-            [
-                story3_1_m,
-                story3_1_s,
-                story3_2_m,
-                story3_2_s,
-                story3_3_m,
-                story3_3_s
-            ].includes(currentChapter)
-        ) {
-            showCountScreen(
-                2,
-                "<ruby>体育館後方<rt>たいいくかんこうほう</rt></ruby>・<ruby>屋外通路<rt>おくがいつうろ</rt></ruby>"
-            );
+        else if ([story3_1_m, story3_1_s, story3_2_m, story3_2_s, story3_3_m, story3_3_s].includes(currentChapter)) {
+            showCountScreen(2, "<ruby>体育館後方<rt>たいいくかんこうほう</rt></ruby>・<ruby>屋外通路<rt>おくがいつうろ</rt></ruby>");
         }
 
         // 第4章：運動場への道
@@ -415,37 +312,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 story4_2,
                 story4_3,
                 "人の流れに合わせ、運動場へ急ぐ",
-                "子どもやけが人を支えながら進む",
+                "周囲の人と声をかけ合いながら進む",
                 "人の少ない別の通路を進む"
             );
         }
-
         else if (currentChapter === story4_1) {
             showDiceScreen("hp", story4_1_s, story4_1_m, 9);
         }
-
         else if (currentChapter === story4_2) {
             showDiceScreen("handan", story4_2_s, story4_2_m, 9);
         }
-
         else if (currentChapter === story4_3) {
             showDiceScreen("luck", story4_3_s, story4_3_m, 10);
         }
-
-        else if (
-            [
-                story4_1_m,
-                story4_1_s,
-                story4_2_m,
-                story4_2_s,
-                story4_3_m,
-                story4_3_s
-            ].includes(currentChapter)
-        ) {
-            showCountScreen(
-                2,
-                "<ruby>運動場<rt>うんどうじょう</rt></ruby><ruby>入口<rt>いりぐち</rt></ruby>"
-            );
+        else if ([story4_1_m, story4_1_s, story4_2_m, story4_2_s, story4_3_m, story4_3_s].includes(currentChapter)) {
+            showCountScreen(2, "<ruby>運動場<rt>うんどうじょう</rt></ruby><ruby>入口<rt>いりぐち</rt></ruby>");
         }
 
         // 第5章：最後の確認
@@ -459,59 +340,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 "体育館に近づき、火災の様子を見に行く"
             );
         }
-
         else if (currentChapter === story5_1) {
             showDiceScreen("hp", story5_1_s, story5_1_m, 11);
         }
-
         else if (currentChapter === story5_2) {
             showDiceScreen("handan", story5_2_s, story5_2_m, 11);
         }
-
         else if (currentChapter === story5_3) {
             showDiceScreen("luck", story5_3_s, story5_3_m, 11);
         }
-
-        else if (
-            [
-                story5_1_m,
-                story5_1_s,
-                story5_2_m,
-                story5_2_s,
-                story5_3_s
-            ].includes(currentChapter)
-        ) {
-            showCountScreen(
-                2,
-                "<ruby>運動場<rt>うんどうじょう</rt></ruby>"
-            );
-        }
-
-        else if (currentChapter === story5_3_m) {
-            showCountScreen(
-                0,
-                "<ruby>体育館付近<rt>たいいくかんふきん</rt></ruby>"
-            );
-            UI.elements.time.textContent = "-";
+        else if ([story5_1_m, story5_1_s, story5_2_m, story5_2_s, story5_3_s, story5_3_m].includes(currentChapter)) {
+            showCountScreen(2, "<ruby>運動場<rt>うんどうじょう</rt></ruby>");
         }
 
         // エンディング前
         else if (currentChapter === story6) {
-            showCountScreen(
-                0,
-                "<ruby>運動場<rt>うんどうじょう</rt></ruby>"
-            );
+            showCountScreen(0, "<ruby>運動場<rt>うんどうじょう</rt></ruby>");
+            UI.elements.time.textContent = "-";
         }
 
-        // エンディング
+        // エンディング画面切り替え
         else if (currentChapter === story7_3) {
             showEnd("gameover");
         }
-
         else if (currentChapter === story7_2) {
             showEnd("trueEnd");
         }
-
         else if (currentChapter === story7_1) {
             showEnd("happyEnd");
         }
