@@ -677,4 +677,19 @@ html, body {
         font-size: 0.85rem;
         padding: 6px 16px;
     }
+    /* スマホブラウザの表示領域に合わせる */
+    .gamesc,
+    #cmd-screen,
+    #dice-screen,
+    .count,
+    .gameover {
+        width: 100%;
+        height: 100vh;   /* 100dvh 非対応ブラウザ用 */
+        height: 100dvh;  /* アドレスバー・下部バーを除いた実表示領域 */
+    }
+
+    /* 会話ボックスを画面下の見える位置へ固定する */
+    .sptxbox {
+        bottom: max(20px, env(safe-area-inset-bottom)) !important;
+    }
 }
