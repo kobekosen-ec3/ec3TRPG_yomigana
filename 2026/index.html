@@ -67,7 +67,7 @@
     <div id="count" class="count" style="display: none;">
         <button class="next" id="nextco">次へ</button>
         <div class="counttx">
-            <ruby>避難制限時間<rt>ひなんせいげんじかん</rt></ruby>まで<ruby>残<rt>のこ</rt></ruby>り<span id="time"></span><ruby>分<rt>ぷん</rt></ruby><br>
+            <ruby>制限時間<rt>せいげんじかん</rt></ruby>まで<ruby>残<rt>のこ</rt></ruby>り<span id="time"></span><ruby>分<rt>ぷん</rt></ruby><br>
             <ruby>場所<rt>ばしょ</rt></ruby>：<span id="place"></span>
         </div>
     </div>
@@ -92,8 +92,13 @@
     <!-- ダイス判定画面 -->
     <div id="dice-screen" style="display: none;">
         <img class="logo" src="../common/img/logo2.jpg" alt="ロゴ">
-        <div class="dicetx">ダイスを<ruby>振<rt>ふ</rt></ruby>ってください。</div>
-        <button id="dicescreen" class="dicescreen">ダイスを<ruby>振<rt>ふ</rt></ruby>る</button>
+        <div class="dicetx">
+            ダイスを<ruby>振<rt>ふ</rt></ruby>ってください。
+        </div>
+        <button id="dicescreen" class="dicescreen">
+            ダイスを<ruby>振<rt>ふ</rt></ruby>る
+        </button>
+        <div id="dice-result" class="dice-result"></div>
     </div>
 
     <!-- 各種エンディング画面 -->
