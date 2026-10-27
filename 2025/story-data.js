@@ -18,7 +18,7 @@ const story1 = createStory(
   {
     speaker: "ナレーター",
     text: `
-      {hours}<ruby>時<rt>じ</rt></ruby>{minutes}<ruby>分<rt>ぷん</rt></ruby>。
+      <ruby>午後<rt>ごご</rt></ruby>4<ruby>時<rt>じ</rt></ruby>{minutes}<ruby>17分<rt>ぷん</rt></ruby>。
       <ruby>町全体<rt>まちぜんたい</rt></ruby>を<ruby>大<rt>おお</rt></ruby>きな<ruby>揺<rt>ゆ</rt></ruby>れが<ruby>襲<rt>おそ</rt></ruby>う。
       <ruby>鳴<rt>な</rt></ruby>りやまない<ruby>地鳴<rt>じな</rt></ruby>り、<ruby>傾<rt>かたむ</rt></ruby>く<ruby>電柱<rt>でんちゅう</rt></ruby>、そして<ruby>無線<rt>むせん</rt></ruby>の<ruby>声<rt>こえ</rt></ruby>。
     `
