@@ -146,13 +146,17 @@ const story2_2_s = createStory(
     {
         speaker: "ナレーター",
         text: `混乱していた人の流れが少し落ち着き、あなたたちは一緒に非常口へ向かう。`
+        
     }
 );
 
 const story2_2_m = createStory(
     {
         speaker: "ナレーター",
-        text: `非常ベルや周囲の声にかき消され、あなたの声は十分に届かない。`
+        text: `非常ベルや周囲の声にかき消され、あなたの声は十分に届かない。`,
+        effect: () => {
+            GameState.time -= 1;
+        }
     },
     {
         speaker: "ナレーター",
@@ -240,7 +244,6 @@ const story3_1_m = createStory(
         speaker: "ナレーター",
         text: `人の流れが乱れ、すぐに協力者を見つけられない。`,
         effect: () => {
-            GameState.rescuedPerson = 1;
             GameState.time -= 2;
         }
     },
