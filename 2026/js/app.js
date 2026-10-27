@@ -315,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
             showDiceScreen("handan", story2_2_s, story2_2_m, 5);
         }
         else if (currentChapter === story2_3) {
-            showDiceScreen("luck", story2_3_s, story2_3_m, 6);
+            showDiceScreen("luck", story2_3_s, story2_3_m, 5);
         }
         else if ([story2_1_m, story2_1_s, story2_2_m, story2_2_s, story2_3_m, story2_3_s].includes(currentChapter)) {
             showCountScreen(2, "<ruby>体育館後方<rt>たいいくかんこうほう</rt></ruby>・<ruby>非常口付近<rt>ひじょうぐちふきん</rt></ruby>");
@@ -336,10 +336,10 @@ document.addEventListener("DOMContentLoaded", () => {
             showDiceScreen("handan", story3_1_s, story3_1_m, 7);
         }
         else if (currentChapter === story3_2) {
-            showDiceScreen("speed", story3_2_s, story3_2_m, 7);
+            showDiceScreen("speed", story3_2_s, story3_2_m, 4);
         }
         else if (currentChapter === story3_3) {
-            showDiceScreen("hp", story3_3_s, story3_3_m, 7);
+            showDiceScreen("handan", story3_3_s, story3_3_m, 6);
         }
         else if ([story3_1_m, story3_1_s, story3_2_m, story3_2_s, story3_3_m, story3_3_s].includes(currentChapter)) {
             showCountScreen(2, "<ruby>体育館後方<rt>たいいくかんこうほう</rt></ruby>・<ruby>屋外通路<rt>おくがいつうろ</rt></ruby>");
@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
             showDiceScreen("hp", story4_1_s, story4_1_m, 9);
         }
         else if (currentChapter === story4_2) {
-            showDiceScreen("handan", story4_2_s, story4_2_m, 9);
+            showDiceScreen("handan", story4_2_s, story4_2_m, 8);
         }
         else if (currentChapter === story4_3) {
             showDiceScreen("luck", story4_3_s, story4_3_m, 10);
@@ -381,10 +381,10 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         }
         else if (currentChapter === story5_1) {
-            showDiceScreen("hp", story5_1_s, story5_1_m, 11);
+            showDiceScreen("hp", story5_1_s, story5_1_m, 8);
         }
         else if (currentChapter === story5_2) {
-            showDiceScreen("handan", story5_2_s, story5_2_m, 11);
+            showDiceScreen("handan", story5_2_s, story5_2_m, 8);
         }
         else if (currentChapter === story5_3) {
             showDiceScreen("luck", story5_3_s, story5_3_m, 11);
