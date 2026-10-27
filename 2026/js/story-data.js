@@ -518,7 +518,6 @@ const story5_2_s = createStory(
         text: `周囲の情報が整理される。`,
         effect: () => {
             GameState.rescuedPerson = 1;
-            GameState.time -= 1;
         }
     },
     {
