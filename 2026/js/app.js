@@ -418,4 +418,12 @@ document.addEventListener("DOMContentLoaded", () => {
         UI.showScreen(endType);
         UI.screens.endActions.style.display = "block";
     }
+
+    document.querySelectorAll(".back-top-link").forEach(link => {
+        link.addEventListener("click", (event) => {
+            if (!window.confirm("進行状況は保存されません。トップページへ戻りますか？")) {
+                event.preventDefault();
+            }
+        });
+    });
 });
