@@ -9,6 +9,36 @@
   box-sizing: border-box;
 }
 
+:root {
+    /* 1. 背景カラー */
+    --bg-color: #f7f3e8;         /* 羊皮紙風ライトベージュ */
+    --card-bg: #ffffff;          /* ボックス白背景 */
+
+    /* 2. メインカラー */
+    --main-color: #2a4958;       /* 枠線・見出し・話者枠の統一ネイビー */
+    --main-hover: #49955c;
+
+    /* 3. アクセントカラー（ボタン類統色彩度） */
+    --accent-color: #00a0e9;     /* アクションボタン水色 */
+    --accent-hover: #064967;     /* ホバー時濃いネイビー/ブルー */
+
+    /* 4. 警告用赤 */
+    --danger-red: #e53e3e;       /* 上限オーバー時などの赤 */
+
+    /* 文字色 */
+    --text-dark: #1a202c;
+    --text-white: #ffffff;
+    --border-gray: #cbd5e0;
+
+    /* 共通サイズ */
+    --border-radius: 8px;
+
+    /* ホバー・発光エフェクト */
+    --shadow-card: 0 6px 24px rgba(27, 54, 93, 0.12);
+    --shadow-button: 0 3px 8px rgba(0, 0, 0, 0.2);
+    --glow-effect: 0 0 14px rgba(100, 173, 196, 0.75);
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -233,6 +263,105 @@ h2 {
 
 .system li:last-child {
   margin-bottom: 0;
+}
+
+/* ==================================================
+   9. カスタム警告モーダル（オリジナルデザイン）
+   ================================================== */
+.modal-box h2 {
+  border-left: none;
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    backdrop-filter: blur(2px);
+}
+
+.modal-box {
+    background-color: var(--card-bg);
+    border: 3px solid var(--main-color);
+    border-radius: var(--border-radius);
+    padding: 25px 30px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: var(--shadow-card);
+    text-align: center;
+    animation: modal-pop 0.2s ease-out;
+}
+
+@keyframes modal-pop {
+    from {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-box h2 {
+    margin: 0 0 12px 0;
+    font-size: 1.3rem;
+    color: var(--main-color);
+    border-bottom: 2px solid var(--main-color);
+    padding-bottom: 6px;
+}
+
+.modal-box p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 15px 0 25px 0;
+    color: var(--text-dark);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    font-family: sans-serif;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 120px;
+}
+
+.modal-btn.cancel {
+    background-color: var(--card-bg);
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+}
+
+.modal-btn.cancel:hover {
+    background-color: var(--main-color);
+    color: var(--text-white);
+}
+
+.modal-btn.ok {
+    background-color: var(--accent-color);
+    color: var(--text-white);
+    border: none;
+    box-shadow: var(--shadow-button);
+}
+
+.modal-btn.ok:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow:  var( --shadow-button);
 }
 
 /* ==================================================

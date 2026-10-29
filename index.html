@@ -47,7 +47,7 @@
             <!-- スライド埋め込み領域 -->
             <div class="slide-container">
             <iframe 
-                src="https://docs.google.com/presentation/d/e/2PACX-1vS9vm-VR7WeAH_sQn4pMOUyHHS8iYSe2At_0cIIYDxtLo3uS4Wr7-QK5OIqMFjNCA/pubembed?start=false&loop=false&delayms=3000" 
+                src="https://docs.google.com/presentation/d/e/2PACX-1vSpytHp4v3kLPHXq_QKruVZm7uzF2ALk0aukaIMGhM1jsWH8DcEbx5LCJsCIkZ12g/pubembed?start=false&loop=false&delayms=3000" 
                 frameborder="0" 
                 allowfullscreen="true" 
                 mozallowfullscreen="true" 
@@ -62,11 +62,11 @@
         <!-- <div class="gamep"> -->
             <div class="gamepngtx">
                 <!-- <img src="img/isekai.png" class="gamepng"><br> -->
-                <a href="2025/index.html">2025ver TRPG</a>
+                <a href="2025/index.html" class="go-game-link">2025ver TRPG</a>
             </div>
             <div class="gamepngtx">
                 <!-- <img src="img/ec3.png" class="gamepng"><br> -->
-                <a href="2026/index.html">2026ver TRPG</a>
+                <a href="2026/index.html"  class="go-game-link">2026ver TRPG</a>
             </div>
         <!-- </div> -->
     </section>
@@ -90,11 +90,25 @@
         </ol>
     </section>
 
+    <!-- カスタム警告モーダル -->
+    <div id="confirm-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <h2 class="chack-text">⚠️確認</h2>
+            <p id="modal-message">ゲーム画面に遷移しますか？</p>
+            <div class="modal-actions">
+                <button id="modal-cancel" class="modal-btn cancel">キャンセル</button>
+                <button id="modal-ok" class="modal-btn ok">移動する</button>
+            </div>
+        </div>
+    </div>
+
     
 
     <footer>
         <p class="footertx">© 2026 EC3. All Rights Reserved.</p>
     </footer>
+    <script src="script.js"></script>
+
 
 
 
