@@ -125,6 +125,19 @@
         </div>
     </div>
 
+    <!-- カスタム警告モーダル -->
+    <div id="confirm-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <h2>⚠️確認</h2>
+            <p id="modal-message">トップページに戻りますか？(進行状況は保存されません。)</p>
+            <div class="modal-actions">
+                <button id="modal-cancel" class="modal-btn cancel">キャンセル</button>
+                <button id="modal-ok" class="modal-btn ok">トップへ戻る</button>
+            </div>
+        </div>
+    </div>
+
+
     <!-- 分離したJSファイルの順番に従って読込み -->
     <script src="js/state.js"></script>
     <script src="js/ui.js"></script>

@@ -63,11 +63,11 @@
         <!-- <div class="gamep"> -->
             <div class="gamepngtx">
                 <!-- <img src="img/isekai.png" class="gamepng"><br> -->
-                <a href="2025/index.html">2025ver TRPG</a>
+                <a href="2025/index.html" class="go-game-link">2025ver TRPG</a>
             </div>
             <div class="gamepngtx">
                 <!-- <img src="img/ec3.png" class="gamepng"><br> -->
-                <a href="2026/index.html">2026ver TRPG</a>
+                <a href="2026/index.html"  class="go-game-link">2026ver TRPG</a>
             </div>
         <!-- </div> -->
     </section>
@@ -91,11 +91,25 @@
         </ol>
     </section>
 
+    <!-- カスタム警告モーダル -->
+    <div id="confirm-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <h2 class="chack-text">⚠️確認</h2>
+            <p id="modal-message">ゲーム画面に遷移しますか？</p>
+            <div class="modal-actions">
+                <button id="modal-cancel" class="modal-btn cancel">キャンセル</button>
+                <button id="modal-ok" class="modal-btn ok">移動する</button>
+            </div>
+        </div>
+    </div>
+
     
 
     <footer>
         <p class="footertx">© 2026 EC3. All Rights Reserved.</p>
     </footer>
+    <script src="script.js"></script>
+
 
 
 
