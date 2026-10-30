@@ -8,10 +8,7 @@ const GAS_URL = "https://script.google.com/macros/s/AKfycbzYJBjaDmOJHeAi6pYLpKeS
 // 同じプレイ結果を二重に記録しないための変数
 let endRecorded = false;
 
-document.addEventListener("DOMContentLoaded", () => {
-    
-
-    // 一括ダイス
+document.addEventListener("DOMContentLoaded", () => {    // 一括ダイス
     document.getElementById("sta").addEventListener("click", () => {
         GameState.rollInitialStats();
         UI.updateStatsUI();
