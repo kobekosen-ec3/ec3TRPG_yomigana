@@ -1,7 +1,15 @@
 /**
  * ゲームエンジン・イベント結合モジュール（ストーリー矛盾・判定修復版）
  */
+
+// GASのウェブアプリURL
+const GAS_URL = "https://script.google.com/macros/s/AKfycbzYJBjaDmOJHeAi6pYLpKeSvaEbzC_FGIFHtoO24y_Sv3torRszN-OV3SCiywPDMAu1tQ/exec";
+
+// 同じプレイ結果を二重に記録しないための変数
+let endRecorded = false;
+
 document.addEventListener("DOMContentLoaded", () => {
+    
 
     // 一括ダイス
     document.getElementById("sta").addEventListener("click", () => {
@@ -46,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         GameState.playerName = name;
+        endRecorded = false;
         GameState.rubyEnabled = UI.elements.rubyToggle.checked;
         document.body.classList.toggle("hide-ruby", !GameState.rubyEnabled);
 
@@ -417,6 +426,43 @@ document.addEventListener("DOMContentLoaded", () => {
     function showEnd(endType) {
         UI.showScreen(endType);
         UI.screens.endActions.style.display = "block";
+
+        let endingName = "";
+
+        if (endType === "happyEnd") {
+            endingName = "happyEnd";
+        }
+        else if (endType === "trueEnd") {
+            endingName = "trueEnd";
+        }
+        else if (endType === "gameover") {
+            endingName = "gameover";
+        }
+
+        recordGameEnd(GameState.playerName, endingName);
+    }
+
+    function recordGameEnd(userName, endingName) {
+    // 同じエンドを何度も記録しない
+    if (endRecorded || !endingName) return;
+
+    endRecorded = true;
+
+    const data = {
+        userName: userName || "名前なし",
+        ending: endingName
+    };
+
+    fetch(GAS_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify(data)
+        }).catch((error) => {
+            console.error("プレイ記録の送信に失敗しました。", error);
+        });
     }
 
     /**
