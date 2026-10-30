@@ -1,3 +1,9 @@
+// GASのウェブアプリURL
+const GAS_URL = "https://script.google.com/macros/s/AKfycbzYJBjaDmOJHeAi6pYLpKeSvaEbzC_FGIFHtoO24y_Sv3torRszN-OV3SCiywPDMAu1tQ/exec";
+
+// 同じエンドを二重に記録しないための変数
+let endRecorded = false;
+
 function displayStory(story) {
   let currentText = story.text
     .replace("{playerName}", playerName)
@@ -80,6 +86,7 @@ start.addEventListener("click", () => {
         alert("設定値を超えています！(合計ステータスは15まで)");
         return;
     }
+    endRecorded = false;
 
     rubyEnabled = document.getElementById("ruby-toggle").checked;
 
@@ -262,22 +269,195 @@ function countbuck(cap){
 }
 
 
-function badend(){
+function badend() {
     document.getElementById("game-screen").style.display = "none";
     document.getElementById("gameover").style.display = "block";
     end.style.display = "block";
+
+    saveEndResult("BAD END");
 }
 
-function trueend(){
+function trueend() {
     document.getElementById("game-screen").style.display = "none";
     document.getElementById("Trueend").style.display = "block";
     end.style.display = "block";
+
+    saveEndResult("BITTER END");
 }
-function happyend(){
+
+function happyend() {
     document.getElementById("game-screen").style.display = "none";
     document.getElementById("Happyend").style.display = "block";
     end.style.display = "block";
+
+    saveEndResult("HAPPY END");
 }
+function saveEndResult(endingName) {
+    recordGameEnd(playerName, endingName)
+        .then(() => showEndChart());
+}
+
+async function recordGameEnd(userName, endingName) {
+    if (endRecorded || !endingName) return;
+
+    endRecorded = true;
+
+    const data = {
+        gameId: "2025",
+        userName: userName || "名前なし",
+        ending: endingName
+    };
+
+    try {
+        await fetch(GAS_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify(data)
+        });
+    } catch (error) {
+        console.error("プレイ記録の送信に失敗しました。", error);
+    }
+}
+
+// function getEndStats() {
+//     return new Promise((resolve, reject) => {
+//         const callbackName = `endStatsCallback_${Date.now()}`;
+//         const script = document.createElement("script");
+
+//         window[callbackName] = (data) => {
+//             delete window[callbackName];
+//             script.remove();
+//             resolve(data);
+//         };
+
+//         script.onerror = () => {
+//             delete window[callbackName];
+//             script.remove();
+//             reject(new Error("エンド集計データを取得できませんでした。"));
+//         };
+
+//         script.src =
+//             `${GAS_URL}?action=stats&gameId=2025&callback=${callbackName}&time=${Date.now()}`;
+
+//         document.body.appendChild(script);
+//     });
+// }
+
+// async function showEndChart() {
+//     const endScreen = document.getElementById("end");
+
+//     const oldChart = document.getElementById("end-chart");
+//     if (oldChart) {
+//         oldChart.remove();
+//     }
+
+//     const chartBox = document.createElement("div");
+//     chartBox.id = "end-chart";
+//     chartBox.style.cssText = `
+//         width: min(90%, 340px);
+//         margin: 20px auto;
+//         padding: 16px;
+//         box-sizing: border-box;
+//         background: rgba(255, 255, 255, 0.92);
+//         border-radius: 12px;
+//         color: #222;
+//         text-align: center;
+//     `;
+
+//     chartBox.innerHTML = "<p>みんなのエンド結果を読み込み中…</p>";
+//     endScreen.prepend(chartBox);
+
+//     try {
+//         const stats = await getEndStats();
+
+//         if (stats.total === 0) {
+//             chartBox.innerHTML = "<p>まだプレイ記録がありません。</p>";
+//             return;
+//         }
+
+//         const colors = [
+//             "#35a7d8",
+//             "#f3ad3d",
+//             "#e45454",
+//             "#52a875",
+//             "#8c70c9"
+//         ];
+
+//         const canvas = document.createElement("canvas");
+//         canvas.width = 220;
+//         canvas.height = 220;
+//         canvas.style.maxWidth = "100%";
+
+//         const context = canvas.getContext("2d");
+//         let startAngle = -Math.PI / 2;
+
+//         stats.counts.forEach((count, index) => {
+//             const angle = (count / stats.total) * Math.PI * 2;
+
+//             context.beginPath();
+//             context.moveTo(110, 110);
+//             context.arc(110, 110, 95, startAngle, startAngle + angle);
+//             context.closePath();
+//             context.fillStyle = colors[index % colors.length];
+//             context.fill();
+
+//             startAngle += angle;
+//         });
+
+//         // 円の中央
+//         context.beginPath();
+//         context.arc(110, 110, 48, 0, Math.PI * 2);
+//         context.fillStyle = "#ffffff";
+//         context.fill();
+
+//         context.fillStyle = "#222";
+//         context.font = "bold 18px sans-serif";
+//         context.textAlign = "center";
+//         context.fillText(`全 ${stats.total} 回`, 110, 116);
+
+//         chartBox.innerHTML = `
+//             <h3 style="margin: 0 0 10px;">エンド到達割合</h3>
+//         `;
+
+//         chartBox.appendChild(canvas);
+
+//         const legend = document.createElement("div");
+//         legend.style.cssText = `
+//             margin-top: 12px;
+//             text-align: left;
+//             font-size: 14px;
+//         `;
+
+//         stats.labels.forEach((label, index) => {
+//             const row = document.createElement("p");
+
+//             row.style.margin = "6px 0";
+
+//             row.innerHTML = `
+//                 <span style="
+//                     display: inline-block;
+//                     width: 12px;
+//                     height: 12px;
+//                     margin-right: 6px;
+//                     border-radius: 50%;
+//                     background: ${colors[index % colors.length]};
+//                 "></span>
+//                 ${label}：${stats.percentages[index]}％
+//                 （${stats.counts[index]}回）
+//             `;
+
+//             legend.appendChild(row);
+//         });
+
+//         chartBox.appendChild(legend);
+//     } catch (error) {
+//         chartBox.innerHTML = "<p>エンド結果を読み込めませんでした。</p>";
+//         console.error(error);
+//     }
+// }
 
 let pendingcmd =null;
 
