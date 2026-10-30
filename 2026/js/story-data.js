@@ -71,7 +71,7 @@ const story2 = createStory(
     },
     {
         speaker: "ナレーター",
-        text: `正面入り口付近の展示ブースの方向から、焦げたにおいが漂ってくる。`
+        text: `正面入口の方向から、焦げたにおいが漂ってくる。`
     },
     {
         speaker: "周囲の声",
@@ -600,20 +600,24 @@ const story7_1 = createStory(
     }
 );
 
-const story7_2 = createStory(
+const story7_2 = [
     {
         speaker: "ナレーター",
-        text: `{playerName}は、周囲の人を見捨てず、協力して避難した。`
+        text: "あなたは、<ruby>無事<rt>ぶじ</rt></ruby>に<ruby>安全<rt>あんぜん</rt></ruby>な<ruby>場所<rt>ばしょ</rt></ruby>へたどり<ruby>着<rt>つ</rt></ruby>いた。"
     },
     {
         speaker: "ナレーター",
-        text: `避難には時間がかかった。`
+        text: "しかし、<ruby>避難<rt>ひなん</rt></ruby>の<ruby>途中<rt>とちゅう</rt></ruby>で<ruby>聞<rt>き</rt></ruby>こえた、<ruby>助<rt>たす</rt></ruby>けを<ruby>求<rt>もと</rt></ruby>める<ruby>声<rt>こえ</rt></ruby>が<ruby>頭<rt>あたま</rt></ruby>から<ruby>離<rt>はな</rt></ruby>れない。"
     },
     {
         speaker: "ナレーター",
-        text: `それでも、あなたの選択は誰かの安全につながっていた。`
+        text: "あのとき<ruby>立<rt>た</rt></ruby>ち<ruby>止<rt>ど</rt></ruby>まっていれば、<ruby>何<rt>なに</rt></ruby>かできたのかもしれない。"
+    },
+    {
+        speaker: "ナレーター",
+        text: "あなたはその<ruby>思<rt>おも</rt></ruby>いを<ruby>胸<rt>むね</rt></ruby>に、<ruby>静<rt>しず</rt></ruby>かに<ruby>目<rt>め</rt></ruby>を<ruby>閉<rt>と</rt></ruby>じた。"
     }
-);
+];
 
 const story7_3 = createStory(
     {

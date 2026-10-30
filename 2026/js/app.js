@@ -185,14 +185,15 @@ document.addEventListener("DOMContentLoaded", () => {    // 一括ダイス
         }
         else if (currentChapter === story6) {
             // エンディング判定分岐（優先順位の調整）
-            if (GameState.time <= 0) {
+            if (GameState.time >= 0) {
                 if (GameState.rescuedPerson === 1) {
-                    nextChapter = story7_2; // ビターエンド（時間切れだが救助達成）
+                    nextChapter = story7_1; // ハッピーエンド（時間内避難成功）
+                    
                 } else {
-                    nextChapter = story7_3; // バッドエンド（時間切れ＆逃げ遅れ）
+                    nextChapter = story7_2; // ビターエンド（時間切れだが救助達成）
                 }
             } else {
-                nextChapter = story7_1;     // ハッピーエンド（時間内避難成功）
+                nextChapter = story7_3; // バッドエンド（時間切れ＆逃げ遅れ） 
             }
         }
 
